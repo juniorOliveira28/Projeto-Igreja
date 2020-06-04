@@ -4,7 +4,6 @@ import fabrica.Fabrica;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.swing.JOptionPane;
 import modelo.Pessoa;
 
 public class DAOGenerico<T> {
@@ -78,7 +77,6 @@ public class DAOGenerico<T> {
             query = entityManager.createQuery("from Pessoa where nome like '" + nome + "%'");
             System.out.println("nome " + nome);
         } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Erro " + e);
             e.printStackTrace();
         }
 
@@ -87,4 +85,3 @@ public class DAOGenerico<T> {
     }
 }
 
-//            query = entityManager.createQuery("from pessoa where nome like '%" + nome + "%' order by nome");

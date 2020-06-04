@@ -1,18 +1,12 @@
 package util;
 
-import fabrica.Fabrica;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.util.HashMap;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JREmptyDataSource;
-import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperPrintManager;
-import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
 
 public class RelatorioMembrosVerso extends JDialog {
@@ -22,7 +16,6 @@ public class RelatorioMembrosVerso extends JDialog {
         setSize(1000, 700);
         setLocationRelativeTo(null);
         try {
-//            Connection con = Fabrica.getFabrica().getConnection();
             String caminho = "/relatorios/relatorioVerso1.jasper";
             InputStream input = getClass().getResourceAsStream(caminho);
             JasperPrint jp = JasperFillManager.fillReport(input, null, new JREmptyDataSource());

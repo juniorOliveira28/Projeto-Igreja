@@ -1,23 +1,11 @@
 package view;
 
-//import com.itextpdf.text.Document;
-//import com.itextpdf.text.DocumentException;
-//import com.itextpdf.text.Paragraph;
-//import com.itextpdf.text.pdf.PdfWriter;
-import java.awt.Desktop;
 import java.awt.Toolkit;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
-import util.RelatorioMembros;
 import util.RelatorioMembrosVerso;
 
 public class JfMenu extends javax.swing.JFrame {
 
-//        TelaFundo telaFundo = new TelaFundo();
     public JfMenu() {
         initComponents();
         this.setIcon();
@@ -25,12 +13,6 @@ public class JfMenu extends javax.swing.JFrame {
         // Maximizando tela principal
         this.setExtendedState(JfMenu.MAXIMIZED_BOTH);
 
-//        try {
-//            painel.add(telaFundo);
-//            telaFundo.setMaximum(true);
-//            telaFundo.setVisible(true);
-//        } catch (Exception e) {
-//        }
     }
 
     // método para centralizar JinternalFrame
@@ -195,17 +177,11 @@ public class JfMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void membrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membrosActionPerformed
-//        JfCadastroMembros cadMembros = new JfCadastroMembros();
-//        painel.add(cadMembros);
-//        cadMembros.setVisible(true);
-//        cadMembros.setLocation(10, 20);
         JfMembros membros = new JfMembros();
         abrirFormulario(membros);
     }//GEN-LAST:event_membrosActionPerformed
 
     private void mnMembrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnMembrosActionPerformed
-        ImageIcon icon = new ImageIcon("img/usuario.jpg");
-        mnMembros.setIcon(icon);
     }//GEN-LAST:event_mnMembrosActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

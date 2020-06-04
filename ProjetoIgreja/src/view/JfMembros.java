@@ -12,8 +12,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -26,21 +24,19 @@ import projetoIgreja.ManipularImagem;
 import util.RelatorioMembros;
 
 public class JfMembros extends javax.swing.JInternalFrame implements MouseListener {
-    
+
     private Pessoa pessoa;
     private DAOGenerico<Pessoa> daoPessoa;
     private List<Pessoa> listaPessoas;
-    private List<Pessoa> listaPessoasConsulta;
     private ManipularImagem mImg = null;
     private DefaultTableModel model;
     byte[] img = null;
     Long idMembro;
-    
+
     public JfMembros() {
         pessoa = new Pessoa();
         daoPessoa = new DAOGenerico<Pessoa>(Pessoa.class);
         listaPessoas = new ArrayList<Pessoa>();
-        listaPessoasConsulta = new ArrayList<Pessoa>();
         initComponents();
         tabela.addMouseListener(this);
         jlImagem.setOpaque(true);
@@ -51,28 +47,24 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
         btAlterar.setEnabled(false);
         btImprimir.setEnabled(false);
         btExcluir.setEnabled(false);
-//        btConsulta.setEnabled(false);
     }
-    
+
     public void preencherListaMembros() {
         listaPessoas = daoPessoa.buscarTodos();
-//        DefaultTableModel model = (DefaultTableModel) tabela.getModel();
         try {
 //          evitar duplicação ao adicionar um novo usuário
             model.setNumRows(0);
             for (Pessoa pessoa : listaPessoas) {
-//            model.addRow(new Object[]{p.getId(), p.getNome(), p.getCpf()});
                 Object[] dados = {pessoa.getNome(), pessoa.getCpf(), pessoa.getRg()};
                 model.addRow(dados);
                 tabela.setModel(model);
-//                System.out.println("PReencher lista " + pessoa.getNome());
             }
 //            tabela.setRowSorter(new TableRowSorter(model));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     public void limparCampos() {
         campoId.setText(null);
         campoNome.setText("");
@@ -101,7 +93,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
         btExcluir = new javax.swing.JButton();
         btImprimir = new javax.swing.JButton();
         btSalvar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btCancelar = new javax.swing.JButton();
         painelFormulario = new javax.swing.JPanel();
         jLabelRg = new javax.swing.JLabel();
         campoRg = new javax.swing.JFormattedTextField();
@@ -174,11 +166,11 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             }
         });
 
-        jButton1.setText("Cancelar");
-        jButton1.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btCancelar.setText("Cancelar");
+        btCancelar.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btCancelarActionPerformed(evt);
             }
         });
 
@@ -470,7 +462,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
                 .addGap(18, 18, 18)
                 .addComponent(btAlterar)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(btExcluir)
                 .addGap(46, 46, 46)
@@ -490,7 +482,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
                             .addGroup(painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -544,68 +536,41 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
     }//GEN-LAST:event_btConsultaActionPerformed
 
     private void btAdicionarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarImagemActionPerformed
-        adicionarImagem2();
-        //        adicionarImagem();
-        //
-        //        // Instancioando JFileChooser
-        //        JFileChooser fileChooser = new JFileChooser();
-        //        fileChooser.setDialogTitle("Procurar Imagem");
-        //        // Definindo que serão abertos apenas arquivos
-        //        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        //        //------------------------
-        ////        File selectedFile = fileChooser.getSelectedFile();
-        //        //------------------------
-        //        // Definindo os tipos de arquivos a serem abertos
-        //        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem", "jpg", "png", "jpeg");
-        //        // passando esses tipos de arquivos para o filtro
-        //        fileChooser.setFileFilter(filter);
-        //        // Abrindo uma janela para adicionar uma imagem
-        //        int retorno = fileChooser.showOpenDialog(this);
-        //        System.out.println("Retorno "+ retorno);
-        //
-        //        if (retorno == JFileChooser.APPROVE_OPTION) {
-        //
-        //        //--------------Teste-------------------------------
-        ////            String path = selectedFile.getAbsolutePath();
-        ////            ImageIcon myImage = new ImageIcon(path);
-        ////
-        ////            Image imag = myImage.getImage();
-        ////            Image newImage  = imag.getScaledInstance(jlImagem.getWidth(), jlImagem.getHeight(), Image.SCALE_SMOOTH);
-        ////            ImageIcon image = new ImageIcon(newImage);
-        ////            jlImagem.setIcon(image);
-        ////
-        //        //--------------------------------------------------
-        //
-        //            File file = fileChooser.getSelectedFile();
-        //            try {
-        //                //carrega a imagem real num buffer
-        //                BufferedImage bi = ImageIO.read(file);
-        //                //cria um buffer auxiliar com o tamanho desejado
-        //                BufferedImage aux = new BufferedImage(148, 160, bi.getType());
-        //                //pega a classe graphics do aux para edição
-        //                Graphics2D g = aux.createGraphics();
-        //                //cria a transformação
-        //                AffineTransform at = AffineTransform.getScaleInstance((double) 148 / bi.getWidth(), (double) 160 / bi.getHeight());
-        //                //pinta e transforma a imagem real no auxiliar
-        //                g.drawRenderedImage(bi, at);
-        //                //seta no jlabel
-        //                jlImagem.setIcon(new ImageIcon(aux));
-        //
-        ////                byte[] bFile = new byte[(int) file.length()];
-        //                byte[] bFile = new byte[(int)file.length()];
-        //                FileInputStream fileInputStream = new FileInputStream(file);
-        //                fileInputStream.read(bFile);
-        //                fileInputStream.close();
-        //                String fileName = file.getName();
-        //                System.out.println("nome " + fileName);
-        //                img = bFile;
-        //                System.out.println("Imagem: " + img);
-        ////                String path = file.getAbsolutePath();
-        ////                jlImagem.setIcon(ResizeImage(path));
-        //            } catch (IOException ex) {
-        //                Logger.getLogger(JfCadastroMembros.class.getName()).log(Level.SEVERE, null, ex);
-        //            }
-        //        }
+
+        // Instancioando JFileChooser
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Procurar Imagem");
+        // Definindo tamanho do dialog para buscar imagem
+        fileChooser.setPreferredSize(new Dimension(800, 500));
+        // Definindo os tipos de arquivos a serem abertos
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem", "jpg", "png", "jpeg");
+        // passando esses tipos de arquivos para o filtro
+        fileChooser.setFileFilter(filter);
+        // Definindo que serão abertos apenas arquivos
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        // Abrindo uma janela para adicionar uma imagem
+        int retorno = fileChooser.showOpenDialog(this);
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            try {
+                //carrega a imagem real num buffer
+                BufferedImage bi = ImageIO.read(file);
+                //cria um buffer auxiliar com o tamanho desejado
+                BufferedImage aux = new BufferedImage(128, 175, bi.getType());
+                //pega a classe graphics do aux para edição
+                Graphics2D g = aux.createGraphics();
+                //cria a transformação
+                AffineTransform at = AffineTransform.getScaleInstance((double) 128 / bi.getWidth(), (double) 175 / bi.getHeight());
+                //pinta e transforma a imagem real no auxiliar 
+                g.drawRenderedImage(bi, at);
+                //seta no jlabel
+                jlImagem.setIcon(new ImageIcon(aux));
+                img = mImg.getImgBytes(aux);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }//GEN-LAST:event_btAdicionarImagemActionPerformed
 
     private void campoNomeMaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeMaeActionPerformed
@@ -628,17 +593,17 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
         // TODO add your handling code here:
     }//GEN-LAST:event_campoCpfActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         limparCampos();
         btSalvar.setEnabled(true);
         btImprimir.setEnabled(false);
         btAlterar.setEnabled(false);
         btExcluir.setEnabled(false);
         preencherListaMembros();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        
+
         if (campoNome.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
             return;
@@ -659,7 +624,6 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
                 pessoa.setNome(campoNome.getText().toUpperCase());
                 pessoa.setCpf(campoCpf.getText());
                 pessoa.setRg(campoRg.getText());
-                // Definindo cidade com letra maiuscula
                 pessoa.setCidade(campoCidade.getText().toUpperCase());
                 pessoa.setNomeMae(campoNomeMae.getText().toUpperCase());
                 pessoa.setNomePai(campoNomePai.getText().toUpperCase());
@@ -692,16 +656,10 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         try {
             if (tabela.getSelectedRow() != -1) {
-                // retorna o modelo da tabela criada para mostrar os dados
-                //                DefaultTableModel model = (DefaultTableModel) this.tabela.getModel();
-                //                model = (DefaultTableModel) this.tabela.getModel();
-//                int linha = tabela.getSelectedRow();
                 int resposta = 0;
                 resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja Excluir esse membro?");
                 if (resposta == JOptionPane.YES_OPTION) {
-//                    pessoa.setId((Long) tabela.getValueAt(linha, 0));
                     pessoa.setId(idMembro);
-//                    JOptionPane.showMessageDialog(null, "Pessoa " + pessoa.getId());
                     daoPessoa.excluir(pessoa.getId());
                     preencherListaMembros();
                     JOptionPane.showMessageDialog(this, "Cadastro excluído com sucesso!");
@@ -710,7 +668,6 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
                 btImprimir.setEnabled(false);
                 limparCampos();
                 btSalvar.setEnabled(true);
-//                pessoa = new Pessoa();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -726,7 +683,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
         System.out.println("Dentro do método alterar");
         int indice = tabela.getSelectedRow();
         pessoa = listaPessoas.get(indice);
-        
+
         if (campoNome.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
             return;
@@ -753,7 +710,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
                 pessoa.setNomePai(campoNomePai.getText().toUpperCase());
                 pessoa.setRg(campoRg.getText());
                 pessoa.setFoto(img);
-                
+
                 if (pessoa.getId() != null) {
                     daoPessoa.alterar(pessoa);
                     JOptionPane.showMessageDialog(null, "Cadastro Alterado com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
@@ -762,103 +719,17 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
                     btAlterar.setEnabled(false);
                     btImprimir.setEnabled(false);
                     preencherListaMembros();
-//                    pessoa = new Pessoa();
-//                    mImg = new ManipularImagem();
-
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }//GEN-LAST:event_btAlterarActionPerformed
-    
-    public File selecionarImagem() {
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Imagem", "jpg", "png", "jpeg", "PNG");
-        fileChooser.addChoosableFileFilter(filtro);
-        fileChooser.setAcceptAllFileFilterUsed(false);
-        fileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
-        fileChooser.setCurrentDirectory(new File("/"));
-        fileChooser.showOpenDialog(this);
-        
-        return fileChooser.getSelectedFile();
-    }
-    
-    private void adicionarImagem2() {
-        // Instancioando JFileChooser
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Procurar Imagem");
-        // Definindo tamanho do dialog para buscar imagem
-        fileChooser.setPreferredSize(new Dimension(800, 500));
-        // Definindo os tipos de arquivos a serem abertos
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem", "jpg", "png", "jpeg");
-        // passando esses tipos de arquivos para o filtro
-        fileChooser.setFileFilter(filter);
-        // Definindo que serão abertos apenas arquivos
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        // Abrindo uma janela para adicionar uma imagem
-        int retorno = fileChooser.showOpenDialog(this);
-        if (retorno == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile();
-            try {
-                //carrega a imagem real num buffer
-                BufferedImage bi = ImageIO.read(file);
-                //cria um buffer auxiliar com o tamanho desejado
-                BufferedImage aux = new BufferedImage(128, 175, bi.getType());
-                //pega a classe graphics do aux para edição
-                Graphics2D g = aux.createGraphics();
-                //cria a transformação
-                AffineTransform at = AffineTransform.getScaleInstance((double) 128 / bi.getWidth(), (double) 175 / bi.getHeight());
-                //pinta e transforma a imagem real no auxiliar 
-                g.drawRenderedImage(bi, at);
-                //seta no jlabel
-                jlImagem.setIcon(new ImageIcon(aux));
-                img = mImg.getImgBytes(aux);
-                
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        
-    }
-//    public void pesquisar() {
-//        String SQL = "select * FROM pessoa where nome like '%"+ campoConsulta.getText()+ "%'";
-//         try {
-//
-//            PS = fabrica.prepareStatement(SQL);
-//            RS = PS.executeQuery();
-//            int QuantidadeColunas = RS.getMetaData().getColumnCount();
-//            DTM = (DefaultTableModel) jTable1.getModel();
-//            DTM.setNumRows(0);
-//            while (RS.next()) {
-//                String Dados[] = new String[QuantidadeColunas];
-//                for (int I = 1; I <= QuantidadeColunas; I++) {
-//                    Dados[I - 1] = RS.getString(I);
-//                }
-//                DTM.addRow(Dados);
-//            }
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Falha ao Carregar a Tabela!\n" + e.toString());
-//        }
-//    }
-
-//    public void preencherListaPorNome() {
-//        listaPessoas = daoPessoa.buscarPorNome(campoConsulta.getText());
-//        System.out.println("lista" + listaPessoas);
-//        DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
-//        try {
-//            modelo.setNumRows(0);
-//            while (listaPessoas.isEmpty()) {
-//            }
-//            tabela.setModel(modelo);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAdicionarImagem;
     private javax.swing.JButton btAlterar;
+    private javax.swing.JButton btCancelar;
     private javax.swing.JButton btConsulta;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btFechar;
@@ -874,7 +745,6 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
     private javax.swing.JTextField campoNomeMae;
     private javax.swing.JTextField campoNomePai;
     private javax.swing.JFormattedTextField campoRg;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabelCidade;
     private javax.swing.JLabel jLabelCpf;
     private javax.swing.JLabel jLabelDtBatismo;
@@ -901,6 +771,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             btImprimir.setEnabled(true);
             btExcluir.setEnabled(true);
             btSalvar.setEnabled(false);
+
             int indice = tabela.getSelectedRow();
             pessoa = listaPessoas.get(indice);
             campoId.setText(pessoa.getId().toString());
@@ -921,31 +792,24 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             } else {
                 campoNomePai.setText(pessoa.getNomePai());
             }
-//            InputStream input = new ByteArrayInputStream(pessoa.getFoto());
-//            try {
-//                BufferedImage imagem = ImageIO.read(input);
-//                jlImagem.setIcon(new ImageIcon(imagem));
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            }
             mImg.exibiImagemLabel(pessoa.getFoto(), jlImagem);
         }
     }
-    
+
     @Override
     public void mousePressed(MouseEvent e) {
     }
-    
+
     @Override
     public void mouseReleased(MouseEvent e) {
     }
-    
+
     @Override
     public void mouseEntered(MouseEvent e) {
     }
-    
+
     @Override
     public void mouseExited(MouseEvent e) {
     }
-    
+
 }
