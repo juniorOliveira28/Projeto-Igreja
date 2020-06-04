@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_membrosjrxml" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dcc4760c-a251-49f8-b65d-ffcd208c8422">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Igreja"/>
+	<queryString language="SQL">
+		<![CDATA[select * from pessoa]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="cidade" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cpf"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="dataBatismo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="dataBatismo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="dataNascimento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="dataNascimento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="foto" class="java.awt.Image">
+		<property name="com.jaspersoft.studio.field.label" value="foto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="nomeMae" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nomeMae"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="nomePai" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nomePai"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<field name="rg" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="rg"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pessoa"/>
+	</field>
+	<group name="id">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="403" splitType="Stretch">
+			<image>
+				<reportElement x="-60" y="10" width="810" height="270" uuid="4edf00a1-eb28-420e-a5b0-1c4ad5e1b5ef"/>
+				<imageExpression><![CDATA["Img/fundoCartao.jpg"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="491" y="182" width="228" height="15" uuid="18d2b0a1-072b-44e9-9c83-8f499ef95801"/>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="162" width="230" height="15" uuid="868c0a4b-34c5-4198-a8a6-5163f00b8601"/>
+				<textFieldExpression><![CDATA[$F{rg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="505" y="143" width="214" height="15" uuid="87b493d8-886f-4bc8-a378-9c8930ea2835"/>
+				<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="502" y="123" width="218" height="15" uuid="eec36bb8-df7f-43ce-91d5-d6fa28b93a9d"/>
+				<textFieldExpression><![CDATA[$F{dataNascimento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="500" y="103" width="220" height="15" uuid="62b2c273-2548-4ded-a8c2-edc966b3cbc1"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="23" y="111" width="284" height="15" uuid="613242bf-5ab0-4c8f-b9f4-fb86f51282e7"/>
+				<textFieldExpression><![CDATA[$F{nomePai}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="-13" y="131" width="322" height="15" uuid="452bcb86-b172-44b1-be65-09399332c4e0"/>
+				<textFieldExpression><![CDATA[$F{nomeMae}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="21" y="150" width="288" height="15" uuid="07f85a32-bb4e-45e0-8e99-c42402f86317"/>
+				<textFieldExpression><![CDATA[$F{dataBatismo}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame">
+				<reportElement stretchType="ContainerBottom" x="370" y="121" width="89" height="119" uuid="95b63bc6-6d4d-4f89-8095-6be7ebb83035"/>
+				<graphicElement fill="Solid"/>
+				<imageExpression><![CDATA[$F{foto}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+</jasperReport>
