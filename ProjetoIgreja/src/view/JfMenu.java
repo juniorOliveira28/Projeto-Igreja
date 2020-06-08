@@ -6,13 +6,22 @@ import util.RelatorioMembrosVerso;
 
 public class JfMenu extends javax.swing.JFrame {
 
-    public JfMenu() {
-        initComponents();
-        this.setIcon();
+    private TelaDeFundo telaDeFundo;
 
+    public JfMenu() {
+//        telaDeFundo = new TelaDeFundo();
+        this.setIcon();
+        initComponents();
         // Maximizando tela principal
         this.setExtendedState(JfMenu.MAXIMIZED_BOTH);
 
+//        try {
+//            painel.add(telaDeFundo);
+//            telaDeFundo.setMaximum(true);
+//            telaDeFundo.setVisible(true);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     // método para centralizar JinternalFrame
@@ -26,6 +35,9 @@ public class JfMenu extends javax.swing.JFrame {
 
         janela.setLocation(larguraPainel / 2 - larguraFrame / 2, alturaPainel / 2 - alturaFrame / 2);
         painel.add(janela);
+//        telaDeFundo.add(janela);
+//        telaDeFundo.add(janela);
+//        telaDeFundo.setVisible(true);
         janela.setVisible(true);
     }
 
@@ -42,7 +54,8 @@ public class JfMenu extends javax.swing.JFrame {
         painel = new javax.swing.JDesktopPane();
         menu = new javax.swing.JMenuBar();
         mnMembros = new javax.swing.JMenu();
-        membros = new javax.swing.JMenuItem();
+        membrosJussara = new javax.swing.JMenuItem();
+        membrosCianorte = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -121,14 +134,23 @@ public class JfMenu extends javax.swing.JFrame {
             }
         });
 
-        membros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/adicionarMembros.png"))); // NOI18N
-        membros.setText("Cadastrar Membros");
-        membros.addActionListener(new java.awt.event.ActionListener() {
+        membrosJussara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/adicionarMembros.png"))); // NOI18N
+        membrosJussara.setText("Membros Jussara");
+        membrosJussara.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                membrosActionPerformed(evt);
+                membrosJussaraActionPerformed(evt);
             }
         });
-        mnMembros.add(membros);
+        mnMembros.add(membrosJussara);
+
+        membrosCianorte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/adicionarMembros.png"))); // NOI18N
+        membrosCianorte.setText("Membros Cianorte");
+        membrosCianorte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                membrosCianorteActionPerformed(evt);
+            }
+        });
+        mnMembros.add(membrosCianorte);
 
         menu.add(mnMembros);
 
@@ -176,10 +198,16 @@ public class JfMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btSalvarActionPerformed
 
-    private void membrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membrosActionPerformed
-        JfMembros membros = new JfMembros();
-        abrirFormulario(membros);
-    }//GEN-LAST:event_membrosActionPerformed
+    private void membrosJussaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membrosJussaraActionPerformed
+        JfMembros jf = new JfMembros();
+        jf.cdd("JUSSARA - PR");
+        abrirFormulario(jf);
+//        jussara();
+//        JfMembros membrosJussara = new JfMembros();
+//        abrirFormulario(membrosJussara);
+//        membrosJussara.setCdd("Jussara");
+//        System.out.println("CIADDEAA" + membrosJussara.getCdd());
+    }//GEN-LAST:event_membrosJussaraActionPerformed
 
     private void mnMembrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnMembrosActionPerformed
     }//GEN-LAST:event_mnMembrosActionPerformed
@@ -188,6 +216,12 @@ public class JfMenu extends javax.swing.JFrame {
         RelatorioMembrosVerso rel = new RelatorioMembrosVerso();
         rel.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void membrosCianorteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membrosCianorteActionPerformed
+        JfMembros jf = new JfMembros();
+        jf.cdd("CIANORTE - PR");
+        abrirFormulario(jf);
+    }//GEN-LAST:event_membrosCianorteActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -230,7 +264,8 @@ public class JfMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem membros;
+    private javax.swing.JMenuItem membrosCianorte;
+    private javax.swing.JMenuItem membrosJussara;
     private javax.swing.JMenuBar menu;
     private javax.swing.JMenu mnMembros;
     private javax.swing.JDesktopPane painel;

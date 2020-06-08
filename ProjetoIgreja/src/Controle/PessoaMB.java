@@ -15,12 +15,12 @@ public class PessoaMB {
         pessoa = new Pessoa();
         listaPessoas = new ArrayList<Pessoa>();
         daoPessoa = new DAOGenerico<Pessoa>(Pessoa.class);
-        preencherListaPessoas();
+//        preencherListaPessoas();
     }
     
-    public void preencherListaPessoas(){
-        listaPessoas = daoPessoa.buscarTodos();
-    }
+//    public void preencherListaPessoas(){
+//        listaPessoas = daoPessoa.buscarTodos();
+//    }
     
     public void salvar(){
         if(pessoa.getId() == null){
@@ -29,7 +29,7 @@ public class PessoaMB {
             daoPessoa.alterar(pessoa);
         }
         pessoa = new Pessoa();
-        preencherListaPessoas();
+//        preencherListaPessoas();
     }
 
     public Pessoa getPessoa() {

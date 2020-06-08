@@ -25,6 +25,9 @@ public class Pessoa implements Serializable {
     private String cidade;
     private String dataNascimento;
     private String dataBatismo;
+    private String telefone;
+    private String observacao;
+    private String situacao;
 //    @Temporal(javax.persistence.TemporalType.DATE)
 //    private Date dataNascimento = new Date();
 //    @Temporal(javax.persistence.TemporalType.DATE)
@@ -109,4 +112,29 @@ public class Pessoa implements Serializable {
     public void setDataBatismo(String dataBatismo) {
         this.dataBatismo = dataBatismo;
     }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
+    }
+    
 }

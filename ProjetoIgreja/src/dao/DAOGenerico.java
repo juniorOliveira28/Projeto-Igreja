@@ -60,10 +60,19 @@ public class DAOGenerico<T> {
         return false;
     }
 
-    public List<T> buscarTodos() {
+    public List<T> buscarTodosJussara() {
         Query query = null;
         try {
-            query = entityManager.createQuery("from " + classe.getSimpleName() + " order by nome");
+            query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'JUSSARA - PR' order by nome");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return query.getResultList();
+    }
+    public List<T> buscarTodosCianorte() {
+        Query query = null;
+        try {
+            query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'CIANORTE - PR' order by nome");
         } catch (Exception e) {
             e.printStackTrace();
         }

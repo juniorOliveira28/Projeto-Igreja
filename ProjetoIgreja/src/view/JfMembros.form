@@ -51,7 +51,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btAlterar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btCancelar" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="7" max="32767" attributes="0"/>
                   <Component id="btExcluir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
@@ -73,7 +73,7 @@
                               <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                                   <Component id="btSalvar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                                   <Component id="btAlterar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Component id="btCancelar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="jButton1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btFechar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
@@ -146,13 +146,13 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSalvarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btCancelar">
+        <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
             <Property name="debugGraphicsOptions" type="int" value="4"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="painelFormulario">
@@ -169,47 +169,57 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="campoDtNascimento" min="-2" pref="75" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="campoDtBatismo" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
-                                  <Component id="jLabelDtBatismo" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabelRg" min="-2" max="-2" attributes="0"/>
-                                  <Component id="campoRg" min="-2" pref="90" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="jLabelNomePai" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelDtNascimento" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelCidade" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabelNomeMae" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="campoNomeMae" alignment="0" max="32767" attributes="0"/>
-                              <Component id="campoNomePai" alignment="0" min="-2" pref="302" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="campoCidade" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabelNome" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Component id="campoNome" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabelCpf" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace pref="1" max="-2" attributes="0"/>
+                                              <Component id="campoCpf" min="-2" pref="100" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="jLabelNome" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="campoDtNascimento" min="-2" pref="75" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="campoDtBatismo" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
+                                                  <Component id="jLabelDtBatismo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabelRg" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="campoRg" min="-2" pref="90" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Component id="jLabelNomePai" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelDtNascimento" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelCidade" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelNomeMae" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="campoNomeMae" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="campoNomePai" alignment="0" min="-2" pref="302" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="campoNome" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabelCpf" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace pref="1" max="-2" attributes="0"/>
-                                      <Component id="campoCpf" min="-2" pref="100" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="comboBoxCidade" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabelFoto" min="-2" max="-2" attributes="0"/>
@@ -261,7 +271,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="jLabelCidade" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="campoCidade" min="-2" max="-2" attributes="0"/>
+                              <Component id="comboBoxCidade" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -361,11 +371,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Data Batismo:"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="campoCidade">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoCidadeActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelNomePai">
               <Properties>
@@ -540,6 +545,27 @@
                 </Container>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JComboBox" name="comboBoxCidade">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="7">
+                    <StringItem index="0" value="SELECIONAR"/>
+                    <StringItem index="1" value="ATALAIA - PR"/>
+                    <StringItem index="2" value="CIANORTE - PR"/>
+                    <StringItem index="3" value="JUSSARA - PR"/>
+                    <StringItem index="4" value="MUNHOZ DE MELO - PR"/>
+                    <StringItem index="5" value="PAIN&#xc7;ANDU - PR"/>
+                    <StringItem index="6" value="TERRA BOA - PR"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboBoxCidadeActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
