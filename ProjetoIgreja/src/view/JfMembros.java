@@ -17,6 +17,8 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import modelo.Pessoa;
@@ -59,11 +61,11 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
     public void preencherListaMembros() {
         try {
             listaPessoas = daoPessoa.buscarTodos(cidade);
-            System.out.println("Cidade: " + cidade );
+            System.out.println("Cidade: " + cidade);
 //          evitar duplicação ao adicionar um novo usuário
             model.setNumRows(0);
             for (Pessoa pessoa : listaPessoas) {
-                Object[] dados = {pessoa.getNome(), pessoa.getCpf(), pessoa.getRg()};
+                Object[] dados = {pessoa.getNome(), pessoa.getCpf(), pessoa.getRg(), pessoa.getCidade()};
                 model.addRow(dados);
                 tabela.setModel(model);
             }
@@ -82,9 +84,11 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
         campoNomePai.setText("");
         campoRg.setText("");
         campoCpf.setText("");
-//        campoCidade.setText("");
         comboBoxCidade.setSelectedIndex(0);
+        cbSituacao.setSelectedIndex(0);
         campoConsulta.setText("");
+        campoTelefone.setText("");
+        campoObservacao.setText("");
         jlImagem.setIcon(null);
         btAlterar.setEnabled(false);
         btSalvar.setEnabled(true);
@@ -130,6 +134,13 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         comboBoxCidade = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        campoTelefone = new javax.swing.JFormattedTextField();
+        jLabel3 = new javax.swing.JLabel();
+        cbSituacao = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        campoObservacao = new javax.swing.JTextArea();
 
         painelBotoes.setBackground(new java.awt.Color(164, 164, 164));
 
@@ -249,7 +260,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             }
         });
 
-        jlImagem.setBackground(new java.awt.Color(51, 51, 255));
+        jlImagem.setBackground(new java.awt.Color(102, 204, 255));
         jlImagem.setForeground(new java.awt.Color(0, 255, 255));
         jlImagem.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
@@ -288,14 +299,14 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
 
             },
             new String [] {
-                "Nome", "Cpf", "Rg"
+                "Nome", "Cpf", "Rg", "Cidade"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -313,13 +324,14 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             tabela.getColumnModel().getColumn(0).setResizable(false);
             tabela.getColumnModel().getColumn(1).setResizable(false);
             tabela.getColumnModel().getColumn(2).setResizable(false);
+            tabela.getColumnModel().getColumn(3).setResizable(false);
         }
 
         javax.swing.GroupLayout painelTabelaLayout = new javax.swing.GroupLayout(painelTabela);
         painelTabela.setLayout(painelTabelaLayout);
         painelTabelaLayout.setHorizontalGroup(
             painelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         painelTabelaLayout.setVerticalGroup(
             painelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,7 +355,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
         painelConsultaLayout.setVerticalGroup(
             painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelConsultaLayout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoConsulta))
@@ -358,6 +370,30 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             }
         });
 
+        jLabel2.setText("Telefone:");
+
+        try {
+            campoTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel3.setText("Obeservação:");
+
+        cbSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECIONAR", "ATIVO", "INATIVO" }));
+
+        jLabel1.setText("Status:");
+
+        campoObservacao.setColumns(20);
+        campoObservacao.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        campoObservacao.setLineWrap(true);
+        campoObservacao.setRows(5);
+        campoObservacao.setTabSize(10);
+        campoObservacao.setToolTipText("");
+        campoObservacao.setVerifyInputWhenFocusTarget(false);
+        jScrollPane2.setViewportView(campoObservacao);
+        campoObservacao.getAccessibleContext().setAccessibleParent(null);
+
         javax.swing.GroupLayout painelFormularioLayout = new javax.swing.GroupLayout(painelFormulario);
         painelFormulario.setLayout(painelFormularioLayout);
         painelFormularioLayout.setHorizontalGroup(
@@ -367,8 +403,9 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
                 .addContainerGap()
                 .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelFormularioLayout.createSequentialGroup()
-                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelFormularioLayout.createSequentialGroup()
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelFormularioLayout.createSequentialGroup()
                                 .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(painelFormularioLayout.createSequentialGroup()
                                         .addComponent(jLabelNome)
@@ -379,29 +416,41 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
                                     .addComponent(jLabelCpf)
                                     .addGroup(painelFormularioLayout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(painelFormularioLayout.createSequentialGroup()
-                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(painelFormularioLayout.createSequentialGroup()
-                                        .addComponent(campoDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(campoDtBatismo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabelDtBatismo))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelRg)
-                                            .addComponent(campoRg, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabelNomePai)
-                                    .addComponent(jLabelDtNascimento)
-                                    .addComponent(jLabelCidade)
-                                    .addComponent(jLabelNomeMae)
-                                    .addComponent(campoNomeMae)
-                                    .addComponent(campoNomePai, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(18, 18, 18))
                     .addGroup(painelFormularioLayout.createSequentialGroup()
-                        .addComponent(comboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelCidade))
+                        .addGap(18, 18, 18)
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(painelFormularioLayout.createSequentialGroup()
+                                .addComponent(cbSituacao, 0, 115, Short.MAX_VALUE)
+                                .addGap(18, 18, 18))))
+                    .addGroup(painelFormularioLayout.createSequentialGroup()
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelFormularioLayout.createSequentialGroup()
+                                    .addComponent(campoDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(campoDtBatismo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabelDtBatismo))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabelRg)
+                                        .addComponent(campoRg, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabelNomePai, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelDtNascimento, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelNomeMae, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(campoNomeMae, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(campoNomePai, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFormularioLayout.createSequentialGroup()
@@ -420,6 +469,23 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelFormularioLayout.createSequentialGroup()
                 .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelFormularioLayout.createSequentialGroup()
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelFormularioLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(painelFormularioLayout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jLabelFoto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(painelFormularioLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabelCpf)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btAdicionarImagem))
                     .addGroup(painelFormularioLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabelNome)
@@ -443,29 +509,22 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
                         .addComponent(jLabelNomeMae, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(campoNomeMae, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelCidade)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelCidade)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(painelFormularioLayout.createSequentialGroup()
-                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelFormularioLayout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(painelFormularioLayout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(jLabelFoto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(painelFormularioLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabelCpf)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btAdicionarImagem)))
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(comboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(painelConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout painelBotoesLayout = new javax.swing.GroupLayout(painelBotoes);
@@ -479,7 +538,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
                 .addComponent(btAlterar)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btExcluir)
                 .addGap(46, 46, 46)
                 .addComponent(btImprimir)
@@ -523,7 +582,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 85, Short.MAX_VALUE))
         );
 
         pack();
@@ -541,7 +600,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             try {
                 model.setNumRows(0);
                 for (Pessoa p : listaPessoas) {
-                    Object[] dados = {p.getNome(), p.getCpf(), p.getRg()};
+                    Object[] dados = {p.getNome(), p.getCpf(), p.getRg(), p.getCidade()};
                     model.addRow(dados);
                     tabela.setModel(model);
                 }
@@ -628,6 +687,8 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             JOptionPane.showMessageDialog(null, "O campo Data Nasc é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
         } else if (comboBoxCidade.getSelectedItem().equals("SELECIONAR")) {
             JOptionPane.showMessageDialog(null, "O campo Cidade é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
+        } else if (cbSituacao.getSelectedItem().equals("SELECIONAR")) {
+            JOptionPane.showMessageDialog(null, "O campo Status é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
         } else if (jlImagem.getIcon() == null) {
             JOptionPane.showMessageDialog(null, "O campo Foto é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -636,8 +697,11 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
                 pessoa.setCpf(campoCpf.getText());
                 pessoa.setRg(campoRg.getText());
                 pessoa.setCidade(comboBoxCidade.getSelectedItem().toString().toUpperCase());
+                pessoa.setSituacao(cbSituacao.getSelectedItem().toString().toUpperCase());
                 pessoa.setNomeMae(campoNomeMae.getText().toUpperCase());
                 pessoa.setNomePai(campoNomePai.getText().toUpperCase());
+                pessoa.setTelefone(campoTelefone.getText().toUpperCase());
+                pessoa.setObservacao(campoObservacao.getText().toUpperCase());
                 pessoa.setDataBatismo(campoDtBatismo.getText());
                 pessoa.setDataNascimento(campoDtNascimento.getText());
                 pessoa.setFoto(img);
@@ -708,19 +772,23 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             JOptionPane.showMessageDialog(null, "O campo Data Nasc é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
         } else if (comboBoxCidade.getSelectedItem().equals("SELECIONAR")) {
             JOptionPane.showMessageDialog(null, "O campo Cidade é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
+        } else if (cbSituacao.getSelectedItem().equals("SELECIONAR")) {
+            JOptionPane.showMessageDialog(null, "O campo Status é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
         } else if (jlImagem.getIcon() == null) {
             JOptionPane.showMessageDialog(null, "O campo Foto é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
                 pessoa.setNome(campoNome.getText().toUpperCase());
-//                pessoa.setCidade(campoCidade.getText().toUpperCase());
                 pessoa.setCidade(comboBoxCidade.getSelectedItem().toString().toUpperCase());
+                pessoa.setSituacao(cbSituacao.getSelectedItem().toString().toUpperCase());
                 pessoa.setCpf(campoCpf.getText());
                 pessoa.setDataBatismo(campoDtBatismo.getText());
                 pessoa.setDataNascimento(campoDtNascimento.getText());
                 pessoa.setNomeMae(campoNomeMae.getText().toUpperCase());
                 pessoa.setNomePai(campoNomePai.getText().toUpperCase());
                 pessoa.setRg(campoRg.getText());
+                pessoa.setTelefone(campoTelefone.getText());
+                pessoa.setObservacao(campoObservacao.getText());
                 pessoa.setFoto(img);
 
                 if (pessoa.getId() != null) {
@@ -758,9 +826,15 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
     private javax.swing.JTextField campoNome;
     private javax.swing.JTextField campoNomeMae;
     private javax.swing.JTextField campoNomePai;
+    private javax.swing.JTextArea campoObservacao;
     private javax.swing.JFormattedTextField campoRg;
+    private javax.swing.JFormattedTextField campoTelefone;
+    private javax.swing.JComboBox<String> cbSituacao;
     private javax.swing.JComboBox<String> comboBoxCidade;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelCidade;
     private javax.swing.JLabel jLabelCpf;
     private javax.swing.JLabel jLabelDtBatismo;
@@ -771,6 +845,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
     private javax.swing.JLabel jLabelNomePai;
     private javax.swing.JLabel jLabelRg;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel jlImagem;
     private javax.swing.JPanel painelBotoes;
     private javax.swing.JPanel painelConsulta;
@@ -799,6 +874,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             campoRg.setText(pessoa.getRg());
             campoDtBatismo.setText(pessoa.getDataBatismo());
             campoDtNascimento.setText(pessoa.getDataNascimento());
+            cbSituacao.setSelectedItem(pessoa.getSituacao());
             if (pessoa.getNomeMae().equals("")) {
                 campoNomeMae.setText("");
             } else {
@@ -809,7 +885,18 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             } else {
                 campoNomePai.setText(pessoa.getNomePai());
             }
+            if (pessoa.getTelefone().equals("")) {
+                campoTelefone.setText("");
+            } else {
+                campoTelefone.setText(pessoa.getTelefone());
+            }
+            if (pessoa.getObservacao().equals("")) {
+                campoObservacao.setText("");
+            } else {
+                campoObservacao.setText(pessoa.getObservacao());
+            }
             mImg.exibiImagemLabel(pessoa.getFoto(), jlImagem);
+            
             if (pessoa.getCidade().equals("JUSSARA - PR")) {
                 caminho = "/relatorios/carteirinhaJussara.jasper";
             } else if (pessoa.getCidade().equals("CIANORTE - PR")) {
