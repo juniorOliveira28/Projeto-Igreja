@@ -60,19 +60,22 @@ public class DAOGenerico<T> {
         return false;
     }
 
-    public List<T> buscarTodosJussara() {
+    public List<T> buscarTodos(String cidade) {
         Query query = null;
         try {
-            query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'JUSSARA - PR' order by nome");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return query.getResultList();
-    }
-    public List<T> buscarTodosCianorte() {
-        Query query = null;
-        try {
-            query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'CIANORTE - PR' order by nome");
+            if (cidade.equals("JUSSARA - PR")) {
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'JUSSARA - PR' order by nome");
+            } else if (cidade.equals("CIANORTE - PR")) {
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'CIANORTE - PR' order by nome");
+            } else if (cidade.equals("ATALAIA - PR")) {
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'ATALAIA - PR' order by nome");
+            } else if (cidade.equals("PAIÇANDU - PR")) {
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade like 'PAI%' order by nome");
+            } else if (cidade.equals("TERRA BOA - PR")) {
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'TERRA BOA - PR' order by nome");
+            } else if (cidade.equals("MUNHOZ DE MELO - PR")) {
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'MUNHOZ DE MELO - PR' order by nome");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -93,4 +96,3 @@ public class DAOGenerico<T> {
 
     }
 }
-

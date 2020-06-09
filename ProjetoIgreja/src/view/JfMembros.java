@@ -33,8 +33,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
     byte[] img = null;
     Long idMembro;
     String cidade;
-
-    
+    public String caminho;
 
     public JfMembros() {
         pessoa = new Pessoa();
@@ -54,18 +53,13 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
 
     public void cdd(String cdd) {
         cidade = cdd;
-        System.out.println("Cidade :" + cidade);
         preencherListaMembros();
     }
 
     public void preencherListaMembros() {
-        System.out.println("Preencher Lista Cidade: " + cidade);
         try {
-            if (cidade.equals("JUSSARA - PR")) {
-                listaPessoas = daoPessoa.buscarTodosJussara();
-            } else if(cidade.equals("CIANORTE - PR")) {
-                listaPessoas = daoPessoa.buscarTodosCianorte();
-            }
+            listaPessoas = daoPessoa.buscarTodos(cidade);
+            System.out.println("Cidade: " + cidade );
 //          evitar duplicação ao adicionar um novo usuário
             model.setNumRows(0);
             for (Pessoa pessoa : listaPessoas) {
@@ -817,14 +811,22 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             }
             mImg.exibiImagemLabel(pessoa.getFoto(), jlImagem);
             if (pessoa.getCidade().equals("JUSSARA - PR")) {
-                caminho = "/relatorios/carteirinhaMembros.jasper";
-            } else if(pessoa.getCidade().equals("CIANORTE - PR")){
+                caminho = "/relatorios/carteirinhaJussara.jasper";
+            } else if (pessoa.getCidade().equals("CIANORTE - PR")) {
                 caminho = "/relatorios/carteirinhaCianorte.jasper";
+            } else if (pessoa.getCidade().equals("ATALAIA - PR")) {
+                caminho = "/relatorios/carteirinhaAtalaia.jasper";
+            } else if (pessoa.getCidade().equals("TERRA BOA - PR")) {
+                caminho = "/relatorios/carteirinhaTerraBoa.jasper";
+            } else if (pessoa.getCidade().equals("PAIÇANDU - PR")) {
+                caminho = "/relatorios/carteirinhaPaicandu.jasper";
+            } else if (pessoa.getCidade().equals("MUNHOZ DE MELO - PR")) {
+                caminho = "/relatorios/carteirinhaMunhozMelo.jasper";
+            } else {
+                JOptionPane.showMessageDialog(null, "Nenhuma Cidade Selecionada");
             }
         }
     }
-
-    public String caminho;
 
     @Override
     public void mousePressed(MouseEvent e) {

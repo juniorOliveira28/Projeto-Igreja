@@ -19,7 +19,6 @@ public class RelatorioMembros extends JDialog {
         setSize(1000, 700);
         setLocationRelativeTo(null);
         try {
-            System.out.println("Teste: " + caminho);
             Connection con = Fabrica.getFabrica().getConnection();
 //            caminho = "/relatorios/carteirinhaMembros.jasper";
             HashMap filtro = new HashMap();

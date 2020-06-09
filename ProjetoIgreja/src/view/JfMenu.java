@@ -56,6 +56,10 @@ public class JfMenu extends javax.swing.JFrame {
         mnMembros = new javax.swing.JMenu();
         membrosJussara = new javax.swing.JMenuItem();
         membrosCianorte = new javax.swing.JMenuItem();
+        membrosAtalaia = new javax.swing.JMenuItem();
+        membrosTerraBoa = new javax.swing.JMenuItem();
+        membrosAtalaia1 = new javax.swing.JMenuItem();
+        membrosTerraBoa1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -152,6 +156,42 @@ public class JfMenu extends javax.swing.JFrame {
         });
         mnMembros.add(membrosCianorte);
 
+        membrosAtalaia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/adicionarMembros.png"))); // NOI18N
+        membrosAtalaia.setText("Membros Atalaia");
+        membrosAtalaia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                membrosAtalaiaActionPerformed(evt);
+            }
+        });
+        mnMembros.add(membrosAtalaia);
+
+        membrosTerraBoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/adicionarMembros.png"))); // NOI18N
+        membrosTerraBoa.setText("Membros Terra Boa");
+        membrosTerraBoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                membrosTerraBoaActionPerformed(evt);
+            }
+        });
+        mnMembros.add(membrosTerraBoa);
+
+        membrosAtalaia1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/adicionarMembros.png"))); // NOI18N
+        membrosAtalaia1.setText("Membros Paiçandu");
+        membrosAtalaia1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                membrosAtalaia1ActionPerformed(evt);
+            }
+        });
+        mnMembros.add(membrosAtalaia1);
+
+        membrosTerraBoa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/adicionarMembros.png"))); // NOI18N
+        membrosTerraBoa1.setText("Membros Munhoz de Melo");
+        membrosTerraBoa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                membrosTerraBoa1ActionPerformed(evt);
+            }
+        });
+        mnMembros.add(membrosTerraBoa1);
+
         menu.add(mnMembros);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/impressora.png"))); // NOI18N
@@ -223,6 +263,30 @@ public class JfMenu extends javax.swing.JFrame {
         abrirFormulario(jf);
     }//GEN-LAST:event_membrosCianorteActionPerformed
 
+    private void membrosAtalaiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membrosAtalaiaActionPerformed
+        JfMembros jf = new JfMembros();
+        jf.cdd("ATALAIA - PR");
+        abrirFormulario(jf);
+    }//GEN-LAST:event_membrosAtalaiaActionPerformed
+
+    private void membrosTerraBoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membrosTerraBoaActionPerformed
+         JfMembros jf = new JfMembros();
+        jf.cdd("TERRA BOA - PR");
+        abrirFormulario(jf);
+    }//GEN-LAST:event_membrosTerraBoaActionPerformed
+
+    private void membrosAtalaia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membrosAtalaia1ActionPerformed
+        JfMembros jf = new JfMembros();
+        jf.cdd("PAIÇANDU - PR");
+        abrirFormulario(jf);
+    }//GEN-LAST:event_membrosAtalaia1ActionPerformed
+
+    private void membrosTerraBoa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membrosTerraBoa1ActionPerformed
+         JfMembros jf = new JfMembros();
+        jf.cdd("MUNHOZ DE MELO - PR");
+        abrirFormulario(jf);
+    }//GEN-LAST:event_membrosTerraBoa1ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -264,8 +328,12 @@ public class JfMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem membrosAtalaia;
+    private javax.swing.JMenuItem membrosAtalaia1;
     private javax.swing.JMenuItem membrosCianorte;
     private javax.swing.JMenuItem membrosJussara;
+    private javax.swing.JMenuItem membrosTerraBoa;
+    private javax.swing.JMenuItem membrosTerraBoa1;
     private javax.swing.JMenuBar menu;
     private javax.swing.JMenu mnMembros;
     private javax.swing.JDesktopPane painel;
