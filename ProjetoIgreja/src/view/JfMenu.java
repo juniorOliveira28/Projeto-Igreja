@@ -62,6 +62,8 @@ public class JfMenu extends javax.swing.JFrame {
         membrosTerraBoa1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        mnMembrosInativos = new javax.swing.JMenu();
+        membrosTerraBoa3 = new javax.swing.JMenuItem();
 
         dialogCadastroMembros.setMinimumSize(new java.awt.Dimension(400, 300));
         dialogCadastroMembros.setModal(true);
@@ -209,6 +211,26 @@ public class JfMenu extends javax.swing.JFrame {
 
         menu.add(jMenu2);
 
+        mnMembrosInativos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Membros.png"))); // NOI18N
+        mnMembrosInativos.setMnemonic('M');
+        mnMembrosInativos.setText("Membros Inativos");
+        mnMembrosInativos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnMembrosInativosActionPerformed(evt);
+            }
+        });
+
+        membrosTerraBoa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Membros.png"))); // NOI18N
+        membrosTerraBoa3.setText("Membros Inativos");
+        membrosTerraBoa3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                membrosTerraBoa3ActionPerformed(evt);
+            }
+        });
+        mnMembrosInativos.add(membrosTerraBoa3);
+
+        menu.add(mnMembrosInativos);
+
         setJMenuBar(menu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -287,6 +309,16 @@ public class JfMenu extends javax.swing.JFrame {
         abrirFormulario(jf);
     }//GEN-LAST:event_membrosTerraBoa1ActionPerformed
 
+    private void mnMembrosInativosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnMembrosInativosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnMembrosInativosActionPerformed
+
+    private void membrosTerraBoa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membrosTerraBoa3ActionPerformed
+        JfMembros jf = new JfMembros();
+        jf.cdd("INATIVO");
+        abrirFormulario(jf);
+    }//GEN-LAST:event_membrosTerraBoa3ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -334,8 +366,10 @@ public class JfMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem membrosJussara;
     private javax.swing.JMenuItem membrosTerraBoa;
     private javax.swing.JMenuItem membrosTerraBoa1;
+    private javax.swing.JMenuItem membrosTerraBoa3;
     private javax.swing.JMenuBar menu;
     private javax.swing.JMenu mnMembros;
+    private javax.swing.JMenu mnMembrosInativos;
     private javax.swing.JDesktopPane painel;
     // End of variables declaration//GEN-END:variables
 

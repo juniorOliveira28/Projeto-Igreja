@@ -64,17 +64,19 @@ public class DAOGenerico<T> {
         Query query = null;
         try {
             if (cidade.equals("JUSSARA - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'JUSSARA - PR' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'JUSSARA - PR' and situacao = 'ATIVO' order by nome");
             } else if (cidade.equals("CIANORTE - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'CIANORTE - PR' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'CIANORTE - PR' and situacao = 'ATIVO' order by nome");
             } else if (cidade.equals("ATALAIA - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'ATALAIA - PR' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'ATALAIA - PR' and situacao = 'ATIVO' order by nome");
             } else if (cidade.equals("PAIÇANDU - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade like 'PAI%' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade like 'PAI%' and situacao = 'ATIVO' order by nome");
             } else if (cidade.equals("TERRA BOA - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'TERRA BOA - PR' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'TERRA BOA - PR' and situacao = 'ATIVO' order by nome");
             } else if (cidade.equals("MUNHOZ DE MELO - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'MUNHOZ DE MELO - PR' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'MUNHOZ DE MELO - PR' and situacao = 'ATIVO' order by nome");
+            }else if(cidade.equals("INATIVO")){
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where situacao = 'INATIVO' order by nome");
             }
         } catch (Exception e) {
             e.printStackTrace();
