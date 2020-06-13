@@ -2,6 +2,8 @@ package view;
 
 import java.awt.Toolkit;
 import javax.swing.JInternalFrame;
+import util.RelatorioCartaMudanca;
+import util.RelatorioCartaRecomendacao;
 import util.RelatorioMembrosVerso;
 
 public class JfMenu extends javax.swing.JFrame {
@@ -60,10 +62,13 @@ public class JfMenu extends javax.swing.JFrame {
         membrosTerraBoa = new javax.swing.JMenuItem();
         membrosAtalaia1 = new javax.swing.JMenuItem();
         membrosTerraBoa1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        mnImprimir = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         mnMembrosInativos = new javax.swing.JMenu();
         membrosTerraBoa3 = new javax.swing.JMenuItem();
+        mnCartas = new javax.swing.JMenu();
+        cartaMudanca = new javax.swing.JMenuItem();
+        cartaRecomendacao = new javax.swing.JMenuItem();
 
         dialogCadastroMembros.setMinimumSize(new java.awt.Dimension(400, 300));
         dialogCadastroMembros.setModal(true);
@@ -196,9 +201,9 @@ public class JfMenu extends javax.swing.JFrame {
 
         menu.add(mnMembros);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/impressora.png"))); // NOI18N
-        jMenu2.setMnemonic('i');
-        jMenu2.setText("Imprimir");
+        mnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/impressora.png"))); // NOI18N
+        mnImprimir.setMnemonic('i');
+        mnImprimir.setText("Imprimir");
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/impressora.png"))); // NOI18N
         jMenuItem1.setText("Imprimir");
@@ -207,9 +212,9 @@ public class JfMenu extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        mnImprimir.add(jMenuItem1);
 
-        menu.add(jMenu2);
+        menu.add(mnImprimir);
 
         mnMembrosInativos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Membros.png"))); // NOI18N
         mnMembrosInativos.setMnemonic('M');
@@ -230,6 +235,30 @@ public class JfMenu extends javax.swing.JFrame {
         mnMembrosInativos.add(membrosTerraBoa3);
 
         menu.add(mnMembrosInativos);
+
+        mnCartas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/impressora.png"))); // NOI18N
+        mnCartas.setMnemonic('i');
+        mnCartas.setText("Cartas");
+
+        cartaMudanca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/impressora.png"))); // NOI18N
+        cartaMudanca.setText("Carta de Mudança");
+        cartaMudanca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cartaMudancaActionPerformed(evt);
+            }
+        });
+        mnCartas.add(cartaMudanca);
+
+        cartaRecomendacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/impressora.png"))); // NOI18N
+        cartaRecomendacao.setText("Carta de Recomendação");
+        cartaRecomendacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cartaRecomendacaoActionPerformed(evt);
+            }
+        });
+        mnCartas.add(cartaRecomendacao);
+
+        menu.add(mnCartas);
 
         setJMenuBar(menu);
 
@@ -292,7 +321,7 @@ public class JfMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_membrosAtalaiaActionPerformed
 
     private void membrosTerraBoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membrosTerraBoaActionPerformed
-         JfMembros jf = new JfMembros();
+        JfMembros jf = new JfMembros();
         jf.cdd("TERRA BOA - PR");
         abrirFormulario(jf);
     }//GEN-LAST:event_membrosTerraBoaActionPerformed
@@ -304,7 +333,7 @@ public class JfMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_membrosAtalaia1ActionPerformed
 
     private void membrosTerraBoa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membrosTerraBoa1ActionPerformed
-         JfMembros jf = new JfMembros();
+        JfMembros jf = new JfMembros();
         jf.cdd("MUNHOZ DE MELO - PR");
         abrirFormulario(jf);
     }//GEN-LAST:event_membrosTerraBoa1ActionPerformed
@@ -318,6 +347,16 @@ public class JfMenu extends javax.swing.JFrame {
         jf.cdd("INATIVO");
         abrirFormulario(jf);
     }//GEN-LAST:event_membrosTerraBoa3ActionPerformed
+
+    private void cartaMudancaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartaMudancaActionPerformed
+        RelatorioCartaMudanca rel = new RelatorioCartaMudanca();
+        rel.setVisible(true);
+    }//GEN-LAST:event_cartaMudancaActionPerformed
+
+    private void cartaRecomendacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartaRecomendacaoActionPerformed
+        RelatorioCartaRecomendacao rel = new RelatorioCartaRecomendacao();
+        rel.setVisible(true);
+    }//GEN-LAST:event_cartaRecomendacaoActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -355,10 +394,11 @@ public class JfMenu extends javax.swing.JFrame {
     private javax.swing.JButton btSalvar;
     private javax.swing.JTextField campoCpf;
     private javax.swing.JTextField campoNome;
+    private javax.swing.JMenuItem cartaMudanca;
+    private javax.swing.JMenuItem cartaRecomendacao;
     private javax.swing.JDialog dialogCadastroMembros;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem membrosAtalaia;
     private javax.swing.JMenuItem membrosAtalaia1;
@@ -368,6 +408,8 @@ public class JfMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem membrosTerraBoa1;
     private javax.swing.JMenuItem membrosTerraBoa3;
     private javax.swing.JMenuBar menu;
+    private javax.swing.JMenu mnCartas;
+    private javax.swing.JMenu mnImprimir;
     private javax.swing.JMenu mnMembros;
     private javax.swing.JMenu mnMembrosInativos;
     private javax.swing.JDesktopPane painel;
