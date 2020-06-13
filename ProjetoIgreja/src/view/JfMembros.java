@@ -1,67 +1,56 @@
 package view;
 
 import dao.DAOGenerico;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import modelo.Pessoa;
-import projetoIgreja.ManipularImagem;
-import util.RelatorioMembros;
 
 public class JfMembros extends javax.swing.JInternalFrame implements MouseListener {
-
+    
     private Pessoa pessoa;
     private DAOGenerico<Pessoa> daoPessoa;
     private List<Pessoa> listaPessoas;
-    private ManipularImagem mImg = null;
     private DefaultTableModel model;
+    private dialogMembros dialog;
     byte[] img = null;
     Long idMembro;
-    String cidade;
+    public String cidade;
     public String caminho;
-
+    Pessoa p;
+    
     public JfMembros() {
+        
         pessoa = new Pessoa();
+        cidade = new String();
+        dialog = new dialogMembros();
         daoPessoa = new DAOGenerico<Pessoa>(Pessoa.class);
         listaPessoas = new ArrayList<Pessoa>();
         initComponents();
+        
         tabela.addMouseListener(this);
-        jlImagem.setOpaque(true);
-        jlImagem.setBackground(Color.white);
-        jlImagem.setBorder(BorderFactory.createLineBorder(Color.lightGray));
         model = (DefaultTableModel) tabela.getModel();
-//        preencherListaMembros();
-        btAlterar.setEnabled(false);
         btImprimir.setEnabled(false);
         btExcluir.setEnabled(false);
     }
-
+    
     public void cdd(String cdd) {
         cidade = cdd;
-        preencherListaMembros();
+        dialog.cdd(cdd);
+        preencherListaMembros(cdd);
     }
-
-    public void preencherListaMembros() {
+    
+    public void fecharBotoes() {
+        btImprimir.setEnabled(false);
+        btExcluir.setEnabled(false);
+    }
+    
+    public void preencherListaMembros(String cd) {
+        listaPessoas = daoPessoa.buscarTodos(cd);
         try {
-            listaPessoas = daoPessoa.buscarTodos(cidade);
-            System.out.println("Cidade: " + cidade);
 //          evitar duplicação ao adicionar um novo usuário
             model.setNumRows(0);
             for (Pessoa pessoa : listaPessoas) {
@@ -71,86 +60,61 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             }
 //            tabela.setRowSorter(new TableRowSorter(model));
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
             e.printStackTrace();
         }
     }
 
-    public void limparCampos() {
-        campoId.setText(null);
-        campoNome.setText("");
-        campoDtBatismo.setText("");
-        campoDtNascimento.setText("");
-        campoNomeMae.setText("");
-        campoNomePai.setText("");
-        campoRg.setText("");
-        campoCpf.setText("");
-        comboBoxCidade.setSelectedIndex(0);
-        cbSituacao.setSelectedIndex(0);
-        campoConsulta.setText("");
-        campoTelefone.setText("");
-        campoObservacao.setText("");
-        jlImagem.setIcon(null);
-        btAlterar.setEnabled(false);
-        btSalvar.setEnabled(true);
-        btImprimir.setEnabled(false);
-        btExcluir.setEnabled(false);
-        pessoa = new Pessoa();
-    }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogCadastro = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
         painelBotoes = new javax.swing.JPanel();
-        btAlterar = new javax.swing.JButton();
         btFechar = new javax.swing.JButton();
-        btExcluir = new javax.swing.JButton();
         btImprimir = new javax.swing.JButton();
-        btSalvar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        painelFormulario = new javax.swing.JPanel();
-        jLabelRg = new javax.swing.JLabel();
-        campoRg = new javax.swing.JFormattedTextField();
-        jLabelDtNascimento = new javax.swing.JLabel();
-        campoCpf = new javax.swing.JFormattedTextField();
-        campoNome = new javax.swing.JTextField();
-        jLabelNome = new javax.swing.JLabel();
-        jLabelCpf = new javax.swing.JLabel();
-        campoDtNascimento = new javax.swing.JFormattedTextField();
-        jLabelCidade = new javax.swing.JLabel();
-        campoDtBatismo = new javax.swing.JFormattedTextField();
-        jLabelDtBatismo = new javax.swing.JLabel();
-        jLabelNomePai = new javax.swing.JLabel();
-        jLabelNomeMae = new javax.swing.JLabel();
-        campoNomePai = new javax.swing.JTextField();
-        campoNomeMae = new javax.swing.JTextField();
-        jlImagem = new javax.swing.JLabel();
-        jLabelFoto = new javax.swing.JLabel();
-        btAdicionarImagem = new javax.swing.JButton();
-        campoId = new javax.swing.JTextField();
+        btNovoMembro = new javax.swing.JButton();
+        btExcluir = new javax.swing.JButton();
         painelConsulta = new javax.swing.JPanel();
-        btConsulta = new javax.swing.JButton();
         campoConsulta = new javax.swing.JTextField();
+        btConsulta = new javax.swing.JButton();
         painelTabela = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
-        comboBoxCidade = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        campoTelefone = new javax.swing.JFormattedTextField();
-        jLabel3 = new javax.swing.JLabel();
-        cbSituacao = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        campoObservacao = new javax.swing.JTextArea();
 
-        painelBotoes.setBackground(new java.awt.Color(164, 164, 164));
+        dialogCadastro.setModal(true);
 
-        btAlterar.setText("Alterar");
-        btAlterar.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-        btAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAlterarActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 390, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout dialogCadastroLayout = new javax.swing.GroupLayout(dialogCadastro.getContentPane());
+        dialogCadastro.getContentPane().setLayout(dialogCadastroLayout);
+        dialogCadastroLayout.setHorizontalGroup(
+            dialogCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogCadastroLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        dialogCadastroLayout.setVerticalGroup(
+            dialogCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogCadastroLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(180, Short.MAX_VALUE))
+        );
+
+        painelBotoes.setBackground(new java.awt.Color(51, 51, 51));
 
         btFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconeFechar.png"))); // NOI18N
         btFechar.setText("Fechar");
@@ -158,6 +122,24 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
         btFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btFecharActionPerformed(evt);
+            }
+        });
+
+        btImprimir.setText("Imprimir");
+        btImprimir.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
+        btImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btImprimirActionPerformed(evt);
+            }
+        });
+
+        btNovoMembro.setText("Novo");
+        btNovoMembro.setMaximumSize(new java.awt.Dimension(71, 23));
+        btNovoMembro.setMinimumSize(new java.awt.Dimension(71, 23));
+        btNovoMembro.setPreferredSize(new java.awt.Dimension(71, 23));
+        btNovoMembro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNovoMembroActionPerformed(evt);
             }
         });
 
@@ -170,113 +152,40 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             }
         });
 
-        btImprimir.setText("Imprimir");
-        btImprimir.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-        btImprimir.addActionListener(new java.awt.event.ActionListener() {
+        javax.swing.GroupLayout painelBotoesLayout = new javax.swing.GroupLayout(painelBotoes);
+        painelBotoes.setLayout(painelBotoesLayout);
+        painelBotoesLayout.setHorizontalGroup(
+            painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBotoesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btNovoMembro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btExcluir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btImprimir)
+                .addGap(18, 18, 18)
+                .addComponent(btFechar)
+                .addContainerGap())
+        );
+        painelBotoesLayout.setVerticalGroup(
+            painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelBotoesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btNovoMembro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        painelConsulta.setBackground(new java.awt.Color(51, 51, 51));
+
+        campoConsulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btImprimirActionPerformed(evt);
+                campoConsultaActionPerformed(evt);
             }
         });
-
-        btSalvar.setText("Salvar");
-        btSalvar.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-        btSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSalvarActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Cancelar");
-        jButton1.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        painelFormulario.setBackground(new java.awt.Color(248, 248, 248));
-
-        jLabelRg.setText("Rg:");
-
-        try {
-            campoRg.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-#")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jLabelDtNascimento.setText("Data Nasc :");
-
-        try {
-            campoCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        campoCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoCpfActionPerformed(evt);
-            }
-        });
-
-        campoNome.setToolTipText("");
-        campoNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNomeActionPerformed(evt);
-            }
-        });
-
-        jLabelNome.setText("Nome:");
-
-        jLabelCpf.setText("Cpf:");
-
-        try {
-            campoDtNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jLabelCidade.setText("Cidade:");
-
-        try {
-            campoDtBatismo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jLabelDtBatismo.setText("Data Batismo:");
-
-        jLabelNomePai.setText("Nome do Pai:");
-
-        jLabelNomeMae.setText("Nome da Mãe: ");
-
-        campoNomePai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNomePaiActionPerformed(evt);
-            }
-        });
-
-        campoNomeMae.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNomeMaeActionPerformed(evt);
-            }
-        });
-
-        jlImagem.setBackground(new java.awt.Color(102, 204, 255));
-        jlImagem.setForeground(new java.awt.Color(0, 255, 255));
-        jlImagem.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-
-        jLabelFoto.setText("Foto:");
-
-        btAdicionarImagem.setText("Adicionar");
-        btAdicionarImagem.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-        btAdicionarImagem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAdicionarImagemActionPerformed(evt);
-            }
-        });
-
-        campoId.setEnabled(false);
-
-        painelConsulta.setBackground(new java.awt.Color(164, 164, 164));
 
         btConsulta.setText("Buscar");
         btConsulta.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
@@ -286,24 +195,28 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             }
         });
 
-        campoConsulta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoConsultaActionPerformed(evt);
-            }
-        });
-
-        painelTabela.setBackground(new java.awt.Color(248, 248, 248));
-
-        javax.swing.GroupLayout painelTabelaLayout = new javax.swing.GroupLayout(painelTabela);
-        painelTabela.setLayout(painelTabelaLayout);
-        painelTabelaLayout.setHorizontalGroup(
-            painelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        javax.swing.GroupLayout painelConsultaLayout = new javax.swing.GroupLayout(painelConsulta);
+        painelConsulta.setLayout(painelConsultaLayout);
+        painelConsultaLayout.setHorizontalGroup(
+            painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelConsultaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(campoConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-        painelTabelaLayout.setVerticalGroup(
-            painelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 157, Short.MAX_VALUE)
+        painelConsultaLayout.setVerticalGroup(
+            painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelConsultaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoConsulta))
+                .addContainerGap())
         );
+
+        painelTabela.setBackground(new java.awt.Color(51, 51, 51));
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -338,253 +251,38 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             tabela.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        javax.swing.GroupLayout painelConsultaLayout = new javax.swing.GroupLayout(painelConsulta);
-        painelConsulta.setLayout(painelConsultaLayout);
-        painelConsultaLayout.setHorizontalGroup(
-            painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelTabela, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(painelConsultaLayout.createSequentialGroup()
+        javax.swing.GroupLayout painelTabelaLayout = new javax.swing.GroupLayout(painelTabela);
+        painelTabela.setLayout(painelTabelaLayout);
+        painelTabelaLayout.setHorizontalGroup(
+            painelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelTabelaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelConsultaLayout.createSequentialGroup()
-                        .addComponent(btConsulta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
-        painelConsultaLayout.setVerticalGroup(
-            painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelConsultaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoConsulta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(painelTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        comboBoxCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECIONAR", "ATALAIA - PR", "CIANORTE - PR", "JUSSARA - PR", "MUNHOZ DE MELO - PR", "PAINÇANDU - PR", "TERRA BOA - PR" }));
-        comboBoxCidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxCidadeActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Telefone:");
-
-        try {
-            campoTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jLabel3.setText("Obeservação:");
-
-        cbSituacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECIONAR", "ATIVO", "INATIVO" }));
-
-        jLabel1.setText("Status:");
-
-        campoObservacao.setColumns(20);
-        campoObservacao.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        campoObservacao.setLineWrap(true);
-        campoObservacao.setRows(5);
-        campoObservacao.setTabSize(10);
-        campoObservacao.setToolTipText("");
-        campoObservacao.setVerifyInputWhenFocusTarget(false);
-        jScrollPane2.setViewportView(campoObservacao);
-        campoObservacao.getAccessibleContext().setAccessibleParent(null);
-
-        javax.swing.GroupLayout painelFormularioLayout = new javax.swing.GroupLayout(painelFormulario);
-        painelFormulario.setLayout(painelFormularioLayout);
-        painelFormularioLayout.setHorizontalGroup(
-            painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelConsulta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(painelFormularioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelFormularioLayout.createSequentialGroup()
-                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelFormularioLayout.createSequentialGroup()
-                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(painelFormularioLayout.createSequentialGroup()
-                                        .addComponent(jLabelNome)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(campoNome))
-                                .addGap(18, 18, 18)
-                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelCpf)
-                                    .addGroup(painelFormularioLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(18, 18, 18))
-                    .addGroup(painelFormularioLayout.createSequentialGroup()
-                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCidade))
-                        .addGap(18, 18, 18)
-                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(painelFormularioLayout.createSequentialGroup()
-                                .addComponent(cbSituacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18))))
-                    .addGroup(painelFormularioLayout.createSequentialGroup()
-                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelFormularioLayout.createSequentialGroup()
-                                    .addComponent(campoDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(campoDtBatismo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabelDtBatismo))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabelRg)
-                                        .addComponent(campoRg, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addComponent(jLabelNomePai, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabelDtNascimento, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabelNomeMae, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(campoNomeMae, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(campoNomePai, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFormularioLayout.createSequentialGroup()
-                        .addComponent(jLabelFoto)
-                        .addGap(62, 62, 62)
-                        .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFormularioLayout.createSequentialGroup()
-                        .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFormularioLayout.createSequentialGroup()
-                        .addComponent(btAdicionarImagem)
-                        .addGap(91, 91, 91))))
-        );
-        painelFormularioLayout.setVerticalGroup(
-            painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelFormularioLayout.createSequentialGroup()
-                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelFormularioLayout.createSequentialGroup()
-                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelFormularioLayout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(painelFormularioLayout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(jLabelFoto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(painelFormularioLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabelCpf)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btAdicionarImagem))
-                    .addGroup(painelFormularioLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelNome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelDtBatismo)
-                            .addComponent(jLabelDtNascimento)
-                            .addComponent(jLabelRg))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(campoDtBatismo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelNomePai)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoNomePai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelNomeMae, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(campoNomeMae, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelCidade)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(comboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(painelConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
-        );
-
-        javax.swing.GroupLayout painelBotoesLayout = new javax.swing.GroupLayout(painelBotoes);
-        painelBotoes.setLayout(painelBotoesLayout);
-        painelBotoesLayout.setHorizontalGroup(
-            painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelBotoesLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(btSalvar)
-                .addGap(18, 18, 18)
-                .addComponent(btAlterar)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btExcluir)
-                .addGap(46, 46, 46)
-                .addComponent(btImprimir)
-                .addGap(33, 33, 33)
-                .addComponent(btFechar)
+        painelTabelaLayout.setVerticalGroup(
+            painelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelTabelaLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(painelFormulario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        painelBotoesLayout.setVerticalGroup(
-            painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelBotoesLayout.createSequentialGroup()
-                .addGroup(painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelBotoesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(painelBotoesLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)))
-                .addComponent(painelFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(199, 199, 199))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelTabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelBotoes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(painelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addComponent(painelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(painelConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(painelTabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -597,8 +295,9 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
     private void btConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultaActionPerformed
         if (campoConsulta.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Nenhum nome informado!");
+            preencherListaMembros(cidade);
         } else {
-            listaPessoas = daoPessoa.buscarPorNome(campoConsulta.getText());
+            listaPessoas = daoPessoa.buscarPorNome(campoConsulta.getText(), cidade);
             try {
                 model.setNumRows(0);
                 for (Pessoa p : listaPessoas) {
@@ -610,248 +309,55 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
                 e.printStackTrace();
             }
         }
-    }//GEN-LAST:event_btConsultaActionPerformed
-
-    private void btAdicionarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarImagemActionPerformed
-
-        // Instancioando JFileChooser
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Procurar Imagem");
-        // Definindo tamanho do dialog para buscar imagem
-        fileChooser.setPreferredSize(new Dimension(800, 500));
-        // Definindo os tipos de arquivos a serem abertos
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem", "jpg", "png", "jpeg");
-        // passando esses tipos de arquivos para o filtro
-        fileChooser.setFileFilter(filter);
-        // Definindo que serão abertos apenas arquivos
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        // Abrindo uma janela para adicionar uma imagem
-        int retorno = fileChooser.showOpenDialog(this);
-        if (retorno == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile();
-            try {
-                //carrega a imagem real num buffer
-                BufferedImage bi = ImageIO.read(file);
-                //cria um buffer auxiliar com o tamanho desejado
-                BufferedImage aux = new BufferedImage(128, 175, bi.getType());
-                //pega a classe graphics do aux para edição
-                Graphics2D g = aux.createGraphics();
-                //cria a transformação
-                AffineTransform at = AffineTransform.getScaleInstance((double) 128 / bi.getWidth(), (double) 175 / bi.getHeight());
-                //pinta e transforma a imagem real no auxiliar 
-                g.drawRenderedImage(bi, at);
-                //seta no jlabel
-                jlImagem.setIcon(new ImageIcon(aux));
-                img = mImg.getImgBytes(aux);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }//GEN-LAST:event_btAdicionarImagemActionPerformed
-
-    private void campoNomeMaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeMaeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoNomeMaeActionPerformed
-
-    private void campoNomePaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomePaiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoNomePaiActionPerformed
-
-    private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoNomeActionPerformed
-
-    private void campoCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoCpfActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        limparCampos();
-        btSalvar.setEnabled(true);
-        btImprimir.setEnabled(false);
-        btAlterar.setEnabled(false);
         btExcluir.setEnabled(false);
-        preencherListaMembros();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-
-        if (campoNome.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else if (campoCpf.getText().trim().length() < 14) {
-            JOptionPane.showMessageDialog(null, "O campo Cpf é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else if (campoRg.getText().trim().length() < 12) {
-            JOptionPane.showMessageDialog(null, "O campo Rg é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else if (campoDtBatismo.getText().trim().length() < 10) {
-            JOptionPane.showMessageDialog(null, "O campo Data Batismo é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else if (campoCpf.getText().trim().length() < 10) {
-            JOptionPane.showMessageDialog(null, "O campo Data Nasc é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else if (comboBoxCidade.getSelectedItem().equals("SELECIONAR")) {
-            JOptionPane.showMessageDialog(null, "O campo Cidade é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else if (cbSituacao.getSelectedItem().equals("SELECIONAR")) {
-            JOptionPane.showMessageDialog(null, "O campo Status é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else if (jlImagem.getIcon() == null) {
-            JOptionPane.showMessageDialog(null, "O campo Foto é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else {
-            try {
-                pessoa.setNome(campoNome.getText().toUpperCase());
-                pessoa.setCpf(campoCpf.getText());
-                pessoa.setRg(campoRg.getText());
-                pessoa.setCidade(comboBoxCidade.getSelectedItem().toString().toUpperCase());
-                pessoa.setSituacao(cbSituacao.getSelectedItem().toString().toUpperCase());
-                pessoa.setNomeMae(campoNomeMae.getText().toUpperCase());
-                pessoa.setNomePai(campoNomePai.getText().toUpperCase());
-                pessoa.setTelefone(campoTelefone.getText().toUpperCase());
-                pessoa.setObservacao(campoObservacao.getText().toUpperCase());
-                pessoa.setDataBatismo(campoDtBatismo.getText());
-                pessoa.setDataNascimento(campoDtNascimento.getText());
-                pessoa.setFoto(img);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            System.out.println("Foto " + pessoa.getFoto());
-            if (pessoa.getId() == null) {
-                daoPessoa.salvar(pessoa);
-                JOptionPane.showMessageDialog(this, "Cadastro Realizado com sucesso!");
-                limparCampos();
-            } else {
-                JOptionPane.showMessageDialog(null, "Ja existe usuario cadastro nesse id " + pessoa.getId());
-            }
-            System.out.println("Cadastro Realizado com sucesso!!!");
-        }
-        preencherListaMembros();
-        mImg = new ManipularImagem();
-        pessoa = new Pessoa();
-    }//GEN-LAST:event_btSalvarActionPerformed
-
+        btImprimir.setEnabled(false);
+    }//GEN-LAST:event_btConsultaActionPerformed
+    
 
     private void btImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btImprimirActionPerformed
-        RelatorioMembros rel = new RelatorioMembros(idMembro, caminho);
-        rel.setVisible(true);
+//        RelatorioMembros rel = new RelatorioMembros(idMembro, caminho);
+//        rel.setVisible(true);
     }//GEN-LAST:event_btImprimirActionPerformed
-
-    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
-        try {
-            if (tabela.getSelectedRow() != -1) {
-                int resposta = 0;
-                resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja Excluir esse membro?");
-                if (resposta == JOptionPane.YES_OPTION) {
-                    pessoa.setId(idMembro);
-                    daoPessoa.excluir(pessoa.getId());
-                    preencherListaMembros();
-                    JOptionPane.showMessageDialog(this, "Cadastro excluído com sucesso!");
-                }
-                btAlterar.setEnabled(false);
-                btImprimir.setEnabled(false);
-                limparCampos();
-                btSalvar.setEnabled(true);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Erro " + e);
-        }
-    }//GEN-LAST:event_btExcluirActionPerformed
 
     private void btFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFecharActionPerformed
         dispose();
     }//GEN-LAST:event_btFecharActionPerformed
 
-    private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
-        System.out.println("Dentro do método alterar");
-        int indice = tabela.getSelectedRow();
-        pessoa = listaPessoas.get(indice);
+    private void btNovoMembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoMembroActionPerformed
+//        dialogMembros dialog = new dialogMembros();
+        dialog.form(this);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_btNovoMembroActionPerformed
 
-        if (campoNome.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else if (campoCpf.getText().trim().length() < 14) {
-            JOptionPane.showMessageDialog(null, "O campo Cpf é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else if (campoRg.getText().trim().length() < 12) {
-            JOptionPane.showMessageDialog(null, "O campo Rg é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else if (campoDtBatismo.getText().trim().length() < 10) {
-            JOptionPane.showMessageDialog(null, "O campo Data Batismo é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else if (campoCpf.getText().trim().length() < 10) {
-            JOptionPane.showMessageDialog(null, "O campo Data Nasc é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else if (comboBoxCidade.getSelectedItem().equals("SELECIONAR")) {
-            JOptionPane.showMessageDialog(null, "O campo Cidade é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else if (cbSituacao.getSelectedItem().equals("SELECIONAR")) {
-            JOptionPane.showMessageDialog(null, "O campo Status é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else if (jlImagem.getIcon() == null) {
-            JOptionPane.showMessageDialog(null, "O campo Foto é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else {
-            try {
-                pessoa.setNome(campoNome.getText().toUpperCase());
-                pessoa.setCidade(comboBoxCidade.getSelectedItem().toString().toUpperCase());
-                pessoa.setSituacao(cbSituacao.getSelectedItem().toString().toUpperCase());
-                pessoa.setCpf(campoCpf.getText());
-                pessoa.setDataBatismo(campoDtBatismo.getText());
-                pessoa.setDataNascimento(campoDtNascimento.getText());
-                pessoa.setNomeMae(campoNomeMae.getText().toUpperCase());
-                pessoa.setNomePai(campoNomePai.getText().toUpperCase());
-                pessoa.setRg(campoRg.getText());
-                pessoa.setTelefone(campoTelefone.getText());
-                pessoa.setObservacao(campoObservacao.getText());
-                pessoa.setFoto(img);
-
-                if (pessoa.getId() != null) {
-                    daoPessoa.alterar(pessoa);
-                    JOptionPane.showMessageDialog(null, "Cadastro Alterado com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
-                    limparCampos();
-                    btSalvar.setEnabled(true);
-                    btAlterar.setEnabled(false);
-                    btImprimir.setEnabled(false);
-                    preencherListaMembros();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        pessoa = p;
+        try {
+            int resposta = 0;
+            resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja Excluir esse membro?");
+            if (resposta == JOptionPane.YES_OPTION) {
+                daoPessoa.excluir(pessoa.getId());
+                btExcluir.setEnabled(false);
+                preencherListaMembros(cidade);
+                JOptionPane.showMessageDialog(this, "Cadastro excluído com sucesso!");
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
         }
-    }//GEN-LAST:event_btAlterarActionPerformed
-
-    private void comboBoxCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCidadeActionPerformed
-
-    }//GEN-LAST:event_comboBoxCidadeActionPerformed
+    }//GEN-LAST:event_btExcluirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAdicionarImagem;
-    private javax.swing.JButton btAlterar;
     private javax.swing.JButton btConsulta;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btFechar;
     private javax.swing.JButton btImprimir;
-    private javax.swing.JButton btSalvar;
+    private javax.swing.JButton btNovoMembro;
     private javax.swing.JTextField campoConsulta;
-    private javax.swing.JFormattedTextField campoCpf;
-    private javax.swing.JFormattedTextField campoDtBatismo;
-    private javax.swing.JFormattedTextField campoDtNascimento;
-    private javax.swing.JTextField campoId;
-    private javax.swing.JTextField campoNome;
-    private javax.swing.JTextField campoNomeMae;
-    private javax.swing.JTextField campoNomePai;
-    private javax.swing.JTextArea campoObservacao;
-    private javax.swing.JFormattedTextField campoRg;
-    private javax.swing.JFormattedTextField campoTelefone;
-    private javax.swing.JComboBox<String> cbSituacao;
-    private javax.swing.JComboBox<String> comboBoxCidade;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabelCidade;
-    private javax.swing.JLabel jLabelCpf;
-    private javax.swing.JLabel jLabelDtBatismo;
-    private javax.swing.JLabel jLabelDtNascimento;
-    private javax.swing.JLabel jLabelFoto;
-    private javax.swing.JLabel jLabelNome;
-    private javax.swing.JLabel jLabelNomeMae;
-    private javax.swing.JLabel jLabelNomePai;
-    private javax.swing.JLabel jLabelRg;
+    private javax.swing.JDialog dialogCadastro;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel jlImagem;
     private javax.swing.JPanel painelBotoes;
     private javax.swing.JPanel painelConsulta;
-    private javax.swing.JPanel painelFormulario;
     private javax.swing.JPanel painelTabela;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
@@ -859,47 +365,19 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getClickCount() == 2) {
-            limparCampos();
-            btAlterar.setEnabled(true);
-            btImprimir.setEnabled(true);
-            btExcluir.setEnabled(true);
-            btSalvar.setEnabled(false);
-
+//            dialogMembros dl = new dialogMembros();
             int indice = tabela.getSelectedRow();
             pessoa = listaPessoas.get(indice);
-            campoId.setText(pessoa.getId().toString());
-            idMembro = pessoa.getId();
-            campoNome.setText(pessoa.getNome());
-//            campoCidade.setText(pessoa.getCidade());
-            comboBoxCidade.setSelectedItem(pessoa.getCidade());
-            campoCpf.setText(pessoa.getCpf());
-            campoRg.setText(pessoa.getRg());
-            campoDtBatismo.setText(pessoa.getDataBatismo());
-            campoDtNascimento.setText(pessoa.getDataNascimento());
-            cbSituacao.setSelectedItem(pessoa.getSituacao());
-            if (pessoa.getNomeMae().equals("")) {
-                campoNomeMae.setText("");
-            } else {
-                campoNomeMae.setText(pessoa.getNomeMae());
-            }
-            if (pessoa.getNomePai().equals("")) {
-                campoNomePai.setText("");
-            } else {
-                campoNomePai.setText(pessoa.getNomePai());
-            }
-            if (pessoa.getTelefone().equals("")) {
-                campoTelefone.setText("");
-            } else {
-                campoTelefone.setText(pessoa.getTelefone());
-            }
-            if (pessoa.getObservacao().equals("")) {
-                campoObservacao.setText("");
-            } else {
-                campoObservacao.setText(pessoa.getObservacao());
-            }
-            mImg.exibiImagemLabel(pessoa.getFoto(), jlImagem);
-            
-            if (pessoa.getCidade().equals("JUSSARA - PR")) {
+            p = pessoa;
+            dialog.form(this);
+            dialog.preencherDialog(p);
+        } else if (e.getClickCount() == 1) {
+            btImprimir.setEnabled(true);
+            btExcluir.setEnabled(true);
+            int indice = tabela.getSelectedRow();
+            pessoa = listaPessoas.get(indice);
+            p = pessoa;
+            if (p.getCidade().equals("JUSSARA - PR")) {
                 caminho = "/relatorios/carteirinhaJussara.jasper";
             } else if (pessoa.getCidade().equals("CIANORTE - PR")) {
                 caminho = "/relatorios/carteirinhaCianorte.jasper";
@@ -916,21 +394,21 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             }
         }
     }
-
+    
     @Override
     public void mousePressed(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseReleased(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseEntered(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseExited(MouseEvent e) {
     }
-
+    
 }
