@@ -125,6 +125,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             }
         });
 
+        btImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-imprimir-carteirinha.png"))); // NOI18N
         btImprimir.setText("Imprimir");
         btImprimir.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
         btImprimir.addActionListener(new java.awt.event.ActionListener() {
@@ -133,6 +134,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             }
         });
 
+        btNovoMembro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-adicionar-membro.png"))); // NOI18N
         btNovoMembro.setText("Novo");
         btNovoMembro.setMaximumSize(new java.awt.Dimension(71, 23));
         btNovoMembro.setMinimumSize(new java.awt.Dimension(71, 23));
@@ -143,6 +145,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             }
         });
 
+        btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-remover-membro.png"))); // NOI18N
         btExcluir.setText("Excluir");
         btExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btExcluir.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
@@ -158,8 +161,8 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBotoesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btNovoMembro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(btNovoMembro, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btExcluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btImprimir)
@@ -187,6 +190,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             }
         });
 
+        btConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-pesquisar.png"))); // NOI18N
         btConsulta.setText("Buscar");
         btConsulta.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
         btConsulta.addActionListener(new java.awt.event.ActionListener() {
@@ -201,8 +205,8 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             painelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelConsultaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(btConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(campoConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -369,6 +373,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             int indice = tabela.getSelectedRow();
             pessoa = listaPessoas.get(indice);
             p = pessoa;
+//            dialog = new dialogMembros();
             dialog.form(this);
             dialog.preencherDialog(p);
         } else if (e.getClickCount() == 1) {

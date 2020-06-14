@@ -136,7 +136,7 @@ public class JfMenu extends javax.swing.JFrame {
 
         painel.setBackground(new java.awt.Color(62, 89, 122));
 
-        mnMembros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Membros.png"))); // NOI18N
+        mnMembros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-membros.png"))); // NOI18N
         mnMembros.setMnemonic('M');
         mnMembros.setText("Membros");
         mnMembros.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +145,7 @@ public class JfMenu extends javax.swing.JFrame {
             }
         });
 
-        membrosJussara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/adicionarMembros.png"))); // NOI18N
+        membrosJussara.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-adicionar-membros2.png"))); // NOI18N
         membrosJussara.setText("Membros Jussara");
         membrosJussara.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,7 +154,7 @@ public class JfMenu extends javax.swing.JFrame {
         });
         mnMembros.add(membrosJussara);
 
-        membrosCianorte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/adicionarMembros.png"))); // NOI18N
+        membrosCianorte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-adicionar-membros1.png"))); // NOI18N
         membrosCianorte.setText("Membros Cianorte");
         membrosCianorte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,7 +172,7 @@ public class JfMenu extends javax.swing.JFrame {
         });
         mnMembros.add(membrosAtalaia);
 
-        membrosTerraBoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/adicionarMembros.png"))); // NOI18N
+        membrosTerraBoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-adicionar-membros2.png"))); // NOI18N
         membrosTerraBoa.setText("Membros Terra Boa");
         membrosTerraBoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,7 +181,7 @@ public class JfMenu extends javax.swing.JFrame {
         });
         mnMembros.add(membrosTerraBoa);
 
-        membrosAtalaia1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/adicionarMembros.png"))); // NOI18N
+        membrosAtalaia1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-adicionar-membros1.png"))); // NOI18N
         membrosAtalaia1.setText("Membros Paiçandu");
         membrosAtalaia1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,7 +205,7 @@ public class JfMenu extends javax.swing.JFrame {
         mnImprimir.setMnemonic('i');
         mnImprimir.setText("Imprimir");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/impressora.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-impressora.png"))); // NOI18N
         jMenuItem1.setText("Imprimir");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,7 +216,7 @@ public class JfMenu extends javax.swing.JFrame {
 
         menu.add(mnImprimir);
 
-        mnMembrosInativos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Membros.png"))); // NOI18N
+        mnMembrosInativos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-membro-inativo.png"))); // NOI18N
         mnMembrosInativos.setMnemonic('M');
         mnMembrosInativos.setText("Membros Inativos");
         mnMembrosInativos.addActionListener(new java.awt.event.ActionListener() {
@@ -225,7 +225,7 @@ public class JfMenu extends javax.swing.JFrame {
             }
         });
 
-        membrosTerraBoa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Membros.png"))); // NOI18N
+        membrosTerraBoa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-membros-inativos.png"))); // NOI18N
         membrosTerraBoa3.setText("Membros Inativos");
         membrosTerraBoa3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,11 +236,11 @@ public class JfMenu extends javax.swing.JFrame {
 
         menu.add(mnMembrosInativos);
 
-        mnCartas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/impressora.png"))); // NOI18N
+        mnCartas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cartas-icone.png"))); // NOI18N
         mnCartas.setMnemonic('i');
         mnCartas.setText("Cartas");
 
-        cartaMudanca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/impressora.png"))); // NOI18N
+        cartaMudanca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconeCarta.png"))); // NOI18N
         cartaMudanca.setText("Carta de Mudança");
         cartaMudanca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,7 +249,7 @@ public class JfMenu extends javax.swing.JFrame {
         });
         mnCartas.add(cartaMudanca);
 
-        cartaRecomendacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/impressora.png"))); // NOI18N
+        cartaRecomendacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-carta-recomendacao.png"))); // NOI18N
         cartaRecomendacao.setText("Carta de Recomendação");
         cartaRecomendacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

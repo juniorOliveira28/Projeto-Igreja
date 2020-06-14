@@ -31,6 +31,7 @@ public class dialogMembros extends javax.swing.JDialog {
     java.awt.Frame parent;
 
     public dialogMembros() {
+        super();
         pessoa = new Pessoa();
 //        jfMembros = new JfMembros();
         daoPessoa = new DAOGenerico<Pessoa>(Pessoa.class);
@@ -140,8 +141,6 @@ public class dialogMembros extends javax.swing.JDialog {
         jLabelCpf = new javax.swing.JLabel();
         campoCpf = new javax.swing.JFormattedTextField();
         campoNomePai = new javax.swing.JTextField();
-        jLabelNomePai = new javax.swing.JLabel();
-        jLabelNomeMae = new javax.swing.JLabel();
         campoNomeMae = new javax.swing.JTextField();
         jLabelCidade = new javax.swing.JLabel();
         comboBoxCidade = new javax.swing.JComboBox<>();
@@ -156,6 +155,8 @@ public class dialogMembros extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         campoObservacao = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         painelBotoes = new javax.swing.JPanel();
         btSalvar = new javax.swing.JButton();
         btAlterar = new javax.swing.JButton();
@@ -219,10 +220,6 @@ public class dialogMembros extends javax.swing.JDialog {
             }
         });
 
-        jLabelNomePai.setText("Nome do Pai:");
-
-        jLabelNomeMae.setText("Nome da Mãe: ");
-
         campoNomeMae.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoNomeMaeActionPerformed(evt);
@@ -277,24 +274,41 @@ public class dialogMembros extends javax.swing.JDialog {
 
         jLabel3.setText("Observação:");
 
+        jLabel4.setText("Nome do Pai:");
+
+        jLabel5.setText("Nome da Mãe:");
+
         javax.swing.GroupLayout painelFormularioLayout = new javax.swing.GroupLayout(painelFormulario);
         painelFormulario.setLayout(painelFormularioLayout);
         painelFormularioLayout.setHorizontalGroup(
             painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFormularioLayout.createSequentialGroup()
+            .addGroup(painelFormularioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelRg)
-                    .addComponent(campoRg, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(campoDtNascimento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelDtNascimento, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(18, 18, 18)
-                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoDtBatismo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelDtBatismo))
-                .addContainerGap(365, Short.MAX_VALUE))
+                    .addGroup(painelFormularioLayout.createSequentialGroup()
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campoRg, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelRg))
+                        .addGap(18, 18, 18)
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(campoDtNascimento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelDtNascimento, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(18, 18, 18)
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campoDtBatismo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelDtBatismo))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(painelFormularioLayout.createSequentialGroup()
+                        .addComponent(jLabelNome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 298, Short.MAX_VALUE)
+                        .addComponent(jLabelCpf)
+                        .addGap(291, 291, 291))
+                    .addGroup(painelFormularioLayout.createSequentialGroup()
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campoNomePai, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(painelFormularioLayout.createSequentialGroup()
                     .addGap(11, 11, 11)
@@ -303,17 +317,9 @@ public class dialogMembros extends javax.swing.JDialog {
                             .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelFormularioLayout.createSequentialGroup()
-                                    .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(painelFormularioLayout.createSequentialGroup()
-                                            .addComponent(jLabelNome)
-                                            .addGap(0, 0, Short.MAX_VALUE))
-                                        .addComponent(campoNome))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabelCpf)
-                                        .addGroup(painelFormularioLayout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(campoNome)
+                                    .addGap(19, 19, 19)
+                                    .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(18, 18, 18))
                         .addGroup(painelFormularioLayout.createSequentialGroup()
                             .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,11 +338,7 @@ public class dialogMembros extends javax.swing.JDialog {
                         .addGroup(painelFormularioLayout.createSequentialGroup()
                             .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3)
-                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabelNomePai, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelNomeMae, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoNomeMae, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoNomePai, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(campoNomeMae, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(84, 144, Short.MAX_VALUE)))
                     .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFormularioLayout.createSequentialGroup()
@@ -354,11 +356,14 @@ public class dialogMembros extends javax.swing.JDialog {
         painelFormularioLayout.setVerticalGroup(
             painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelFormularioLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addContainerGap()
+                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCpf)
+                    .addComponent(jLabelNome))
+                .addGap(37, 37, 37)
                 .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelFormularioLayout.createSequentialGroup()
-                        .addComponent(jLabelDtBatismo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(20, 20, 20)
                         .addComponent(campoDtBatismo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(painelFormularioLayout.createSequentialGroup()
@@ -366,10 +371,18 @@ public class dialogMembros extends javax.swing.JDialog {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(campoRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(painelFormularioLayout.createSequentialGroup()
-                            .addComponent(jLabelDtNascimento)
+                            .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelDtNascimento)
+                                .addComponent(jLabelDtBatismo))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(campoDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(278, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoNomePai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addContainerGap(206, Short.MAX_VALUE))
             .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFormularioLayout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -383,24 +396,14 @@ public class dialogMembros extends javax.swing.JDialog {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(painelFormularioLayout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelCpf)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGap(26, 26, 26)
                                     .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btAdicionarImagem))
                         .addGroup(painelFormularioLayout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelNome)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGap(26, 26, 26)
                             .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(52, 52, 52)
-                            .addComponent(jLabelNomePai)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(campoNomePai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabelNomeMae, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGap(124, 124, 124)
                             .addComponent(campoNomeMae, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -421,6 +424,7 @@ public class dialogMembros extends javax.swing.JDialog {
 
         painelBotoes.setBackground(new java.awt.Color(243, 243, 243));
 
+        btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-salvar.png"))); // NOI18N
         btSalvar.setText("Salvar");
         btSalvar.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -551,64 +555,6 @@ public class dialogMembros extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
-    private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoNomeActionPerformed
-
-    private void campoCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoCpfActionPerformed
-
-    private void campoNomePaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomePaiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoNomePaiActionPerformed
-
-    private void campoNomeMaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeMaeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoNomeMaeActionPerformed
-
-    private void comboBoxCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCidadeActionPerformed
-
-    }//GEN-LAST:event_comboBoxCidadeActionPerformed
-
-    private void btAdicionarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarImagemActionPerformed
-
-        // Instancioando JFileChooser
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Procurar Imagem");
-        // Definindo tamanho do dialog para buscar imagem
-        fileChooser.setPreferredSize(new Dimension(800, 500));
-        // Definindo os tipos de arquivos a serem abertos
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem", "jpg", "png", "jpeg");
-        // passando esses tipos de arquivos para o filtro
-        fileChooser.setFileFilter(filter);
-        // Definindo que serão abertos apenas arquivos
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        // Abrindo uma janela para adicionar uma imagem
-        int retorno = fileChooser.showOpenDialog(this);
-        if (retorno == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile();
-            try {
-                //carrega a imagem real num buffer
-                BufferedImage bi = ImageIO.read(file);
-                //cria um buffer auxiliar com o tamanho desejado
-                BufferedImage aux = new BufferedImage(128, 175, bi.getType());
-                //pega a classe graphics do aux para edição
-                Graphics2D g = aux.createGraphics();
-                //cria a transformação
-                AffineTransform at = AffineTransform.getScaleInstance((double) 128 / bi.getWidth(), (double) 175 / bi.getHeight());
-                //pinta e transforma a imagem real no auxiliar
-                g.drawRenderedImage(bi, at);
-                //seta no jlabel
-                jlImagem.setIcon(new ImageIcon(aux));
-                img = mImg.getImgBytes(aux);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }//GEN-LAST:event_btAdicionarImagemActionPerformed
-
     String cdd;
 
     public void cdd(String cd) {
@@ -686,6 +632,64 @@ public class dialogMembros extends javax.swing.JDialog {
         rel.setVisible(true);
     }//GEN-LAST:event_btImprimirActionPerformed
 
+    private void btAdicionarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarImagemActionPerformed
+
+        // Instancioando JFileChooser
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Procurar Imagem");
+        // Definindo tamanho do dialog para buscar imagem
+        fileChooser.setPreferredSize(new Dimension(800, 500));
+        // Definindo os tipos de arquivos a serem abertos
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Imagem", "jpg", "png", "jpeg");
+        // passando esses tipos de arquivos para o filtro
+        fileChooser.setFileFilter(filter);
+        // Definindo que serão abertos apenas arquivos
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        // Abrindo uma janela para adicionar uma imagem
+        int retorno = fileChooser.showOpenDialog(this);
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            try {
+                //carrega a imagem real num buffer
+                BufferedImage bi = ImageIO.read(file);
+                //cria um buffer auxiliar com o tamanho desejado
+                BufferedImage aux = new BufferedImage(128, 175, bi.getType());
+                //pega a classe graphics do aux para edição
+                Graphics2D g = aux.createGraphics();
+                //cria a transformação
+                AffineTransform at = AffineTransform.getScaleInstance((double) 128 / bi.getWidth(), (double) 175 / bi.getHeight());
+                //pinta e transforma a imagem real no auxiliar
+                g.drawRenderedImage(bi, at);
+                //seta no jlabel
+                jlImagem.setIcon(new ImageIcon(aux));
+                img = mImg.getImgBytes(aux);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btAdicionarImagemActionPerformed
+
+    private void comboBoxCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCidadeActionPerformed
+
+    }//GEN-LAST:event_comboBoxCidadeActionPerformed
+
+    private void campoNomeMaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeMaeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoNomeMaeActionPerformed
+
+    private void campoNomePaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomePaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoNomePaiActionPerformed
+
+    private void campoCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoCpfActionPerformed
+
+    private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoNomeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -758,14 +762,14 @@ public class dialogMembros extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelCidade;
     private javax.swing.JLabel jLabelCpf;
     private javax.swing.JLabel jLabelDtBatismo;
     private javax.swing.JLabel jLabelDtNascimento;
     private javax.swing.JLabel jLabelFoto;
     private javax.swing.JLabel jLabelNome;
-    private javax.swing.JLabel jLabelNomeMae;
-    private javax.swing.JLabel jLabelNomePai;
     private javax.swing.JLabel jLabelRg;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel jlImagem;

@@ -20,6 +20,7 @@ public class RelatorioCartaRecomendacao extends JDialog {
             InputStream input = getClass().getResourceAsStream(caminho);
             JasperPrint jp = JasperFillManager.fillReport(input, null, new JREmptyDataSource());
             JasperViewer viewer = new JasperViewer(jp);
+            viewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
             getContentPane().add(viewer.getContentPane());
 
         } catch (Exception e) {

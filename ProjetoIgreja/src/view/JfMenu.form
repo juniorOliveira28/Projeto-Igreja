@@ -89,7 +89,7 @@
         <Menu class="javax.swing.JMenu" name="mnMembros">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/Membros.png"/>
+              <Image iconType="3" name="/img/icone-membros.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="77"/>
             <Property name="text" type="java.lang.String" value="Membros"/>
@@ -101,7 +101,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="membrosJussara">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/adicionarMembros.png"/>
+                  <Image iconType="3" name="/img/icone-adicionar-membros2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Membros Jussara"/>
               </Properties>
@@ -112,7 +112,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="membrosCianorte">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/adicionarMembros.png"/>
+                  <Image iconType="3" name="/img/icone-adicionar-membros1.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Membros Cianorte"/>
               </Properties>
@@ -134,7 +134,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="membrosTerraBoa">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/adicionarMembros.png"/>
+                  <Image iconType="3" name="/img/icone-adicionar-membros2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Membros Terra Boa"/>
               </Properties>
@@ -145,7 +145,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="membrosAtalaia1">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/adicionarMembros.png"/>
+                  <Image iconType="3" name="/img/icone-adicionar-membros1.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Membros Pai&#xe7;andu"/>
               </Properties>
@@ -178,7 +178,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/impressora.png"/>
+                  <Image iconType="3" name="/img/icone-impressora.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Imprimir"/>
               </Properties>
@@ -191,7 +191,7 @@
         <Menu class="javax.swing.JMenu" name="mnMembrosInativos">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/Membros.png"/>
+              <Image iconType="3" name="/img/icone-membro-inativo.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="77"/>
             <Property name="text" type="java.lang.String" value="Membros Inativos"/>
@@ -203,7 +203,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="membrosTerraBoa3">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/Membros.png"/>
+                  <Image iconType="3" name="/img/icone-membros-inativos.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Membros Inativos"/>
               </Properties>
@@ -216,7 +216,7 @@
         <Menu class="javax.swing.JMenu" name="mnCartas">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/impressora.png"/>
+              <Image iconType="3" name="/img/cartas-icone.png"/>
             </Property>
             <Property name="mnemonic" type="int" value="105"/>
             <Property name="text" type="java.lang.String" value="Cartas"/>
@@ -225,7 +225,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="cartaMudanca">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/impressora.png"/>
+                  <Image iconType="3" name="/img/iconeCarta.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Carta de Mudan&#xe7;a"/>
               </Properties>
@@ -236,7 +236,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="cartaRecomendacao">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/impressora.png"/>
+                  <Image iconType="3" name="/img/icone-carta-recomendacao.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Carta de Recomenda&#xe7;&#xe3;o"/>
               </Properties>
