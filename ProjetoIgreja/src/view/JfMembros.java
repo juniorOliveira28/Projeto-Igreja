@@ -326,9 +326,8 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
     private void btFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFecharActionPerformed
         dispose();
     }//GEN-LAST:event_btFecharActionPerformed
-
     private void btNovoMembroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoMembroActionPerformed
-//        dialogMembros dialog = new dialogMembros();
+        dialog.limparCampos(cidade);
         dialog.form(this);
         dialog.setVisible(true);
     }//GEN-LAST:event_btNovoMembroActionPerformed
