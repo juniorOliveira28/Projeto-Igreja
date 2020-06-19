@@ -13,7 +13,7 @@ public class RelatorioCartaMudanca extends JDialog {
 
     public RelatorioCartaMudanca() {
         super(new JFrame(), "Carta de Mudança", true);
-        setSize(1000, 700);
+        setSize(1200, 750);
         setLocationRelativeTo(null);
         try {
             String caminho = "/relatorios/cartaMudanca.jasper";

@@ -29,10 +29,12 @@ public class dialogMembros extends javax.swing.JDialog {
     String cidade;
     public String caminho;
     java.awt.Frame parent;
+    String cdd;
 
     public dialogMembros() {
         pessoa = new Pessoa();
         this.setTitle("Membros");
+        this.setBackground(Color.yellow);
         daoPessoa = new DAOGenerico<Pessoa>(Pessoa.class);
         initComponents();
         setLocationRelativeTo(parent);
@@ -40,7 +42,7 @@ public class dialogMembros extends javax.swing.JDialog {
 //        this.setVisible(true);
         btSalvar.setEnabled(true);
         btAlterar.setEnabled(false);
-        btImprimir.setEnabled(false);
+//        btImprimir.setEnabled(false);
 
         jlImagem.setOpaque(true);
         jlImagem.setBackground(Color.white);
@@ -64,7 +66,7 @@ public class dialogMembros extends javax.swing.JDialog {
             campoObservacao.setText("");
             jlImagem.setIcon(null);
             btSalvar.setEnabled(true);
-            btImprimir.setEnabled(false);
+//            btImprimir.setEnabled(false);
             btAlterar.setEnabled(false);
             pessoa = new Pessoa();
         }
@@ -73,7 +75,8 @@ public class dialogMembros extends javax.swing.JDialog {
     public void preencherDialog(Pessoa p) {
         btSalvar.setEnabled(false);
         btAlterar.setEnabled(true);
-        btImprimir.setEnabled(true);
+
+//        btImprimir.setEnabled(true);
         pessoa = p;
         campoId.setText(pessoa.getId().toString());
         idMembro = pessoa.getId();
@@ -106,22 +109,6 @@ public class dialogMembros extends javax.swing.JDialog {
         }
         mImg.exibiImagemLabel(pessoa.getFoto(), jlImagem);
 
-        if (pessoa.getCidade().equals("JUSSARA - PR")) {
-            caminho = "/relatorios/carteirinhaJussara.jasper";
-        } else if (pessoa.getCidade().equals("CIANORTE - PR")) {
-            caminho = "/relatorios/carteirinhaCianorte.jasper";
-        } else if (pessoa.getCidade().equals("ATALAIA - PR")) {
-            caminho = "/relatorios/carteirinhaAtalaia.jasper";
-        } else if (pessoa.getCidade().equals("TERRA BOA - PR")) {
-            caminho = "/relatorios/carteirinhaTerraBoa.jasper";
-        } else if (pessoa.getCidade().equals("PAIÇANDU - PR")) {
-            caminho = "/relatorios/carteirinhaPaicandu.jasper";
-        } else if (pessoa.getCidade().equals("MUNHOZ DE MELO - PR")) {
-            caminho = "/relatorios/carteirinhaMunhozMelo.jasper";
-        } else {
-            JOptionPane.showMessageDialog(null, "Nenhuma Cidade Selecionada");
-        }
-//       
         this.setVisible(true);
     }
 
@@ -161,7 +148,6 @@ public class dialogMembros extends javax.swing.JDialog {
         btSalvar = new javax.swing.JButton();
         btAlterar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
-        btImprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
@@ -394,14 +380,6 @@ public class dialogMembros extends javax.swing.JDialog {
             }
         });
 
-        btImprimir.setText("Imprimir");
-        btImprimir.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-        btImprimir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btImprimirActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout painelBotoesLayout = new javax.swing.GroupLayout(painelBotoes);
         painelBotoes.setLayout(painelBotoesLayout);
         painelBotoesLayout.setHorizontalGroup(
@@ -412,8 +390,6 @@ public class dialogMembros extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btImprimir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btCancelar)
                 .addContainerGap())
         );
@@ -425,9 +401,7 @@ public class dialogMembros extends javax.swing.JDialog {
                     .addGroup(painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -500,8 +474,6 @@ public class dialogMembros extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
-    String cdd;
-
     public void cdd(String cd) {
         cdd = cd;
     }
@@ -560,22 +532,9 @@ public class dialogMembros extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btAlterarActionPerformed
 
-//    public void fecharDialog() {
-//        pessoa = new Pessoa();
-//        this.setVisible(false);
-//        JfMembros jf = new JfMembros();
-//        jf.preencherListaMembros();
-//    }
-
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btCancelarActionPerformed
-
-    private void btImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btImprimirActionPerformed
-        RelatorioMembros rel = new RelatorioMembros(idMembro, caminho);
-        this.setVisible(false);
-        rel.setVisible(true);
-    }//GEN-LAST:event_btImprimirActionPerformed
 
     private void btAdicionarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarImagemActionPerformed
         // Instancioando JFileChooser
@@ -669,7 +628,6 @@ public class dialogMembros extends javax.swing.JDialog {
     private javax.swing.JButton btAdicionarImagem;
     private javax.swing.JButton btAlterar;
     private javax.swing.JButton btCancelar;
-    private javax.swing.JButton btImprimir;
     private javax.swing.JButton btSalvar;
     private javax.swing.JFormattedTextField campoCpf;
     private javax.swing.JFormattedTextField campoDtBatismo;

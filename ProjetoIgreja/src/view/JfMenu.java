@@ -1,6 +1,10 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import util.RelatorioCartaMudanca;
 import util.RelatorioCartaRecomendacao;
@@ -13,6 +17,8 @@ public class JfMenu extends javax.swing.JFrame {
     public JfMenu() {
 //        telaDeFundo = new TelaDeFundo();
         this.setIcon();
+//                getContentPane().setBackground(Color.red);
+        
         initComponents();
         // Maximizando tela principal
         this.setExtendedState(JfMenu.MAXIMIZED_BOTH);
@@ -53,7 +59,13 @@ public class JfMenu extends javax.swing.JFrame {
         campoNome = new javax.swing.JTextField();
         campoCpf = new javax.swing.JTextField();
         btSalvar = new javax.swing.JButton();
-        painel = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/img/fundo.png"));
+        Image image = icon.getImage();
+        painel = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+        };
         menu = new javax.swing.JMenuBar();
         mnMembros = new javax.swing.JMenu();
         membrosJussara = new javax.swing.JMenuItem();

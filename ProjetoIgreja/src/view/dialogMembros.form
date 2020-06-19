@@ -401,8 +401,6 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btAlterar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btImprimir" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btCancelar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -417,10 +415,7 @@
                           <Component id="btAlterar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="btSalvar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="btImprimir" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                          <Component id="btCancelar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="btCancelar" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -459,15 +454,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelarActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btImprimir">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Imprimir"/>
-            <Property name="debugGraphicsOptions" type="int" value="4"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btImprimirActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

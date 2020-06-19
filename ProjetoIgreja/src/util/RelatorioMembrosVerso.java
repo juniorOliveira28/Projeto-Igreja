@@ -13,7 +13,7 @@ public class RelatorioMembrosVerso extends JDialog {
 
     public RelatorioMembrosVerso() {
         super(new JFrame(), "Carteirinha de Membros", true);
-        setSize(1000, 700);
+        setSize(1200, 750);
         setLocationRelativeTo(null);
         try {
             String caminho = "/relatorios/relatorioVerso1.jasper";
