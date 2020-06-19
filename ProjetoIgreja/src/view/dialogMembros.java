@@ -31,6 +31,8 @@ public class DialogMembros extends javax.swing.JDialog {
     public String caminho;
     java.awt.Frame parent;
     String cdd;
+    
+    
 
     public DialogMembros() {
         this.setIcon();
@@ -472,7 +474,7 @@ public class DialogMembros extends javax.swing.JDialog {
                     daoPessoa.salvar(pessoa);
                     JOptionPane.showMessageDialog(this, "Cadastro Realizado com sucesso!");
                     pessoa = new Pessoa();
-                    mImg = new ManipularImagem();
+                   img = null;
                     jfMembros.preencherListaMembros(cdd);
                     jfMembros.fecharBotoes();
                     this.dispose();
@@ -534,6 +536,7 @@ public class DialogMembros extends javax.swing.JDialog {
                     daoPessoa.alterar(pessoa);
                     JOptionPane.showMessageDialog(null, "Cadastro Alterado com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
                     pessoa = new Pessoa();
+                    img = null;
                     jfMembros.preencherListaMembros(cdd);
                     jfMembros.fecharBotoes();
                     this.dispose();
