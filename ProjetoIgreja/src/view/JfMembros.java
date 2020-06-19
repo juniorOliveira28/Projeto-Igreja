@@ -423,7 +423,6 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
 //                JOptionPane.showMessageDialog(null, "Nenhuma Cidade Selecionada");
             }
         }
-
     }
 
     @Override
