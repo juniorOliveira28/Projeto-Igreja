@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -12,24 +11,12 @@ import util.RelatorioMembrosVerso;
 
 public class JfMenu extends javax.swing.JFrame {
 
-    private TelaDeFundo telaDeFundo;
-
     public JfMenu() {
-//        telaDeFundo = new TelaDeFundo();
         this.setIcon();
-//                getContentPane().setBackground(Color.red);
-        
         initComponents();
         // Maximizando tela principal
         this.setExtendedState(JfMenu.MAXIMIZED_BOTH);
 
-//        try {
-//            painel.add(telaDeFundo);
-//            telaDeFundo.setMaximum(true);
-//            telaDeFundo.setVisible(true);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
     }
 
     // método para centralizar JinternalFrame
@@ -43,9 +30,6 @@ public class JfMenu extends javax.swing.JFrame {
 
         janela.setLocation(larguraPainel / 2 - larguraFrame / 2, alturaPainel / 2 - alturaFrame / 2);
         painel.add(janela);
-//        telaDeFundo.add(janela);
-//        telaDeFundo.add(janela);
-//        telaDeFundo.setVisible(true);
         janela.setVisible(true);
     }
 
@@ -175,7 +159,7 @@ public class JfMenu extends javax.swing.JFrame {
         });
         mnMembros.add(membrosCianorte);
 
-        membrosAtalaia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/adicionarMembros.png"))); // NOI18N
+        membrosAtalaia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-adicionar-membros3.png"))); // NOI18N
         membrosAtalaia.setText("Membros Atalaia");
         membrosAtalaia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,7 +186,7 @@ public class JfMenu extends javax.swing.JFrame {
         });
         mnMembros.add(membrosAtalaia1);
 
-        membrosTerraBoa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/adicionarMembros.png"))); // NOI18N
+        membrosTerraBoa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-adicionar-membros3.png"))); // NOI18N
         membrosTerraBoa1.setText("Membros Munhoz de Melo");
         membrosTerraBoa1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,7 +202,7 @@ public class JfMenu extends javax.swing.JFrame {
         mnImprimir.setText("Imprimir");
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icone-impressora.png"))); // NOI18N
-        jMenuItem1.setText("Imprimir");
+        jMenuItem1.setText("Imprimir Verso");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -305,11 +289,6 @@ public class JfMenu extends javax.swing.JFrame {
         JfMembros jf = new JfMembros();
         jf.cdd("JUSSARA - PR");
         abrirFormulario(jf);
-//        jussara();
-//        JfMembros membrosJussara = new JfMembros();
-//        abrirFormulario(membrosJussara);
-//        membrosJussara.setCdd("Jussara");
-//        System.out.println("CIADDEAA" + membrosJussara.getCdd());
     }//GEN-LAST:event_membrosJussaraActionPerformed
 
     private void mnMembrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnMembrosActionPerformed
@@ -426,8 +405,7 @@ public class JfMenu extends javax.swing.JFrame {
     private javax.swing.JMenu mnMembrosInativos;
     private javax.swing.JDesktopPane painel;
     // End of variables declaration//GEN-END:variables
-
-    public void setIcon() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/logo-igreja.png")));
+ public void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/icone.png")));
     }
 }

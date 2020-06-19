@@ -13,10 +13,11 @@ public class RelatorioMembrosVerso extends JDialog {
 
     public RelatorioMembrosVerso() {
         super(new JFrame(), "Carteirinha de Membros", true);
+        setModal(true);
         setSize(1200, 750);
         setLocationRelativeTo(null);
         try {
-            String caminho = "/relatorios/relatorioVerso1.jasper";
+            String caminho = "/relatorios/carteirinhaVerso.jasper";
             InputStream input = getClass().getResourceAsStream(caminho);
             JasperPrint jp = JasperFillManager.fillReport(input, null, new JREmptyDataSource());
             JasperViewer viewer = new JasperViewer(jp);

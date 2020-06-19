@@ -2,61 +2,60 @@ package view;
 
 import dao.DAOGenerico;
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import modelo.Pessoa;
 import util.RelatorioMembros;
 
 public class JfMembros extends javax.swing.JInternalFrame implements MouseListener {
-
+    
     private Pessoa pessoa;
     private DAOGenerico<Pessoa> daoPessoa;
     private List<Pessoa> listaPessoas;
     private DefaultTableModel model;
-    private dialogMembros dialog;
+    private DialogMembros dialog;
     byte[] img = null;
     Long idMembro;
     public String cidade;
     public String caminho;
     Pessoa p;
-
     List lista;
-
+    
     public JfMembros() {
-
+        
         pessoa = new Pessoa();
         cidade = new String();
-        dialog = new dialogMembros();
-//        lista = new ArrayList<Long>();
-
+        dialog = new DialogMembros();
         daoPessoa = new DAOGenerico<Pessoa>(Pessoa.class);
         listaPessoas = new ArrayList<Pessoa>();
         lista = new ArrayList<>();
+        
         initComponents();
-
+        
         tabela.addMouseListener(this);
         model = (DefaultTableModel) tabela.getModel();
         btImprimir.setEnabled(false);
         btExcluir.setEnabled(false);
     }
-
+    
     public void cdd(String cdd) {
         cidade = cdd;
         dialog.cdd(cdd);
         preencherListaMembros(cdd);
     }
-
+    
     public void fecharBotoes() {
         btImprimir.setEnabled(false);
         btExcluir.setEnabled(false);
     }
-
+    
     public void preencherListaMembros(String cd) {
         listaPessoas = daoPessoa.buscarTodos(cd);
         try {
@@ -66,6 +65,12 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
                 Object[] dados = {pessoa.getNome(), pessoa.getCpf(), pessoa.getCidade(), pessoa.getSituacao()};
                 model.addRow(dados);
                 tabela.setModel(model);
+//              Centralizando dados da tabela
+                DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+                centerRenderer.setHorizontalAlignment((int) CENTER_ALIGNMENT);
+                tabela.setDefaultRenderer(String.class, centerRenderer);
+                ((DefaultTableCellRenderer) tabela.getTableHeader().
+                        getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
             }
 //            tabela.setRowSorter(new TableRowSorter(model));
         } catch (Exception e) {
@@ -122,6 +127,8 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(180, Short.MAX_VALUE))
         );
+
+        setVisible(true);
 
         painelBotoes.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -276,7 +283,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
         painelTabelaLayout.setVerticalGroup(
             painelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelTabelaLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -325,7 +332,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
         btExcluir.setEnabled(false);
         btImprimir.setEnabled(false);
     }//GEN-LAST:event_btConsultaActionPerformed
-
+    
 
     private void btImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btImprimirActionPerformed
         RelatorioMembros rel = new RelatorioMembros(lista, caminho);
@@ -387,14 +394,14 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             dialog.preencherDialog(pessoa);
         }
     }
-
+    
     @Override
     public void mousePressed(MouseEvent e) {
         if (e.getClickCount() == 1) {
             lista = new ArrayList<>();
             int indice = tabela.getSelectedRow();
-            if(indice != -1){
-            p = listaPessoas.get(indice);
+            if (indice != -1) {
+                p = listaPessoas.get(indice);
             }
             btImprimir.setEnabled(true);
             btExcluir.setEnabled(true);
@@ -405,7 +412,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
                 idMembro = pessoa.getId();
                 lista.add(idMembro);
                 
-                System.out.println("Membro selecionado : " + p.getId() +" "+ p.getNome());
+                System.out.println("Membro selecionado : " + p.getId() + " " + p.getNome());
             }
             if (p.getCidade().equals("JUSSARA - PR")) {
                 caminho = "/relatorios/carteirinhaJussara.jasper";
@@ -424,20 +431,20 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             }
         }
     }
-
+    
     @Override
     public void mouseReleased(MouseEvent e
     ) {
     }
-
+    
     @Override
     public void mouseEntered(MouseEvent e
     ) {
     }
-
+    
     @Override
     public void mouseExited(MouseEvent e
     ) {
     }
-
+    
 }

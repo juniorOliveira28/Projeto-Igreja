@@ -4,6 +4,7 @@ import dao.DAOGenerico;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,25 +17,26 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.Pessoa;
 import projetoIgreja.ManipularImagem;
-import util.RelatorioMembros;
 
-public class dialogMembros extends javax.swing.JDialog {
+public class DialogMembros extends javax.swing.JDialog {
 
     private Pessoa pessoa;
     private JfMembros jfMembros;
     private DAOGenerico<Pessoa> daoPessoa;
     private ManipularImagem mImg = null;
     byte[] img = null;
+    byte[] imgTemp = null;
     Long idMembro;
     String cidade;
     public String caminho;
     java.awt.Frame parent;
     String cdd;
 
-    public dialogMembros() {
+    public DialogMembros() {
+        this.setIcon();
         pessoa = new Pessoa();
-        this.setTitle("Membros");
-        this.setBackground(Color.yellow);
+        this.setTitle("Membro");
+//        this.setBackground(Color.yellow);
         daoPessoa = new DAOGenerico<Pessoa>(Pessoa.class);
         initComponents();
         setLocationRelativeTo(parent);
@@ -66,9 +68,9 @@ public class dialogMembros extends javax.swing.JDialog {
             campoObservacao.setText("");
             jlImagem.setIcon(null);
             btSalvar.setEnabled(true);
-//            btImprimir.setEnabled(false);
             btAlterar.setEnabled(false);
             pessoa = new Pessoa();
+            mImg = new ManipularImagem();
         }
     }
 
@@ -76,7 +78,6 @@ public class dialogMembros extends javax.swing.JDialog {
         btSalvar.setEnabled(false);
         btAlterar.setEnabled(true);
 
-//        btImprimir.setEnabled(true);
         pessoa = p;
         campoId.setText(pessoa.getId().toString());
         idMembro = pessoa.getId();
@@ -282,18 +283,27 @@ public class dialogMembros extends javax.swing.JDialog {
                                 .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel9))))
-                        .addGap(18, 18, 18)
                         .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(painelFormularioLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(painelFormularioLayout.createSequentialGroup()
                                 .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btAdicionarImagem)
-                                    .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
-                                .addGap(0, 55, Short.MAX_VALUE)))
-                        .addContainerGap())
+                                    .addGroup(painelFormularioLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(painelFormularioLayout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(painelFormularioLayout.createSequentialGroup()
+                                                .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 55, Short.MAX_VALUE))))
+                                    .addGroup(painelFormularioLayout.createSequentialGroup()
+                                        .addGap(73, 73, 73)
+                                        .addComponent(jLabel3)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())
+                            .addGroup(painelFormularioLayout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(btAdicionarImagem)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(painelFormularioLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -348,7 +358,7 @@ public class dialogMembros extends javax.swing.JDialog {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btAdicionarImagem)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -515,14 +525,19 @@ public class dialogMembros extends javax.swing.JDialog {
                 pessoa.setRg(campoRg.getText());
                 pessoa.setTelefone(campoTelefone.getText());
                 pessoa.setObservacao(campoObservacao.getText());
+                imgTemp =pessoa.getFoto();
+                if(img != null){
                 pessoa.setFoto(img);
+                }
                 if (pessoa.getId() != null) {
+//                    if(imgTemp == img){
                     daoPessoa.alterar(pessoa);
                     JOptionPane.showMessageDialog(null, "Cadastro Alterado com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
                     pessoa = new Pessoa();
                     jfMembros.preencherListaMembros(cdd);
                     jfMembros.fecharBotoes();
                     this.dispose();
+//                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -533,7 +548,7 @@ public class dialogMembros extends javax.swing.JDialog {
     }//GEN-LAST:event_btAlterarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btAdicionarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarImagemActionPerformed
@@ -591,28 +606,29 @@ public class dialogMembros extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(dialogMembros.class
+            java.util.logging.Logger.getLogger(DialogMembros.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(dialogMembros.class
+            java.util.logging.Logger.getLogger(DialogMembros.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(dialogMembros.class
+            java.util.logging.Logger.getLogger(DialogMembros.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(dialogMembros.class
+            java.util.logging.Logger.getLogger(DialogMembros.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 //                dialogMembros dialog = new dialogMembros(new javax.swing.JFrame(), true);
-                dialogMembros dialog = new dialogMembros();
+                DialogMembros dialog = new DialogMembros();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -658,4 +674,8 @@ public class dialogMembros extends javax.swing.JDialog {
     private javax.swing.JPanel painelBotoes;
     private javax.swing.JPanel painelFormulario;
     // End of variables declaration//GEN-END:variables
+
+public void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/icone.png")));
+    }
 }

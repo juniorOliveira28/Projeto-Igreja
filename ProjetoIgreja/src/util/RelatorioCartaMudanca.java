@@ -13,6 +13,7 @@ public class RelatorioCartaMudanca extends JDialog {
 
     public RelatorioCartaMudanca() {
         super(new JFrame(), "Carta de Mudança", true);
+        setModal(true);
         setSize(1200, 750);
         setLocationRelativeTo(null);
         try {

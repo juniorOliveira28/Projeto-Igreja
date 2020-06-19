@@ -123,7 +123,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="membrosAtalaia">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/adicionarMembros.png"/>
+                  <Image iconType="3" name="/img/icone-adicionar-membros3.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Membros Atalaia"/>
               </Properties>
@@ -156,7 +156,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="membrosTerraBoa1">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/adicionarMembros.png"/>
+                  <Image iconType="3" name="/img/icone-adicionar-membros3.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Membros Munhoz de Melo"/>
               </Properties>
@@ -180,7 +180,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/img/icone-impressora.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Imprimir"/>
+                <Property name="text" type="java.lang.String" value="Imprimir Verso"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
