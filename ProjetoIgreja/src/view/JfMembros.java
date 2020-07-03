@@ -2,7 +2,6 @@ package view;
 
 import dao.DAOGenerico;
 import java.awt.Color;
-import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -15,54 +14,54 @@ import modelo.Pessoa;
 import util.RelatorioMembros;
 
 public class JfMembros extends javax.swing.JInternalFrame implements MouseListener {
-    
+
     private Pessoa pessoa;
     private DAOGenerico<Pessoa> daoPessoa;
     private List<Pessoa> listaPessoas;
     private DefaultTableModel model;
     private DialogMembros dialog;
     byte[] img = null;
-    Long idMembro;
+    Long idMembro = null;
     public String cidade;
     public String caminho;
     Pessoa p;
     List lista;
-    
+
     public JfMembros() {
-        
+
         pessoa = new Pessoa();
         cidade = new String();
         dialog = new DialogMembros();
         daoPessoa = new DAOGenerico<Pessoa>(Pessoa.class);
         listaPessoas = new ArrayList<Pessoa>();
         lista = new ArrayList<>();
-        
+
         initComponents();
-        
+
         tabela.addMouseListener(this);
         model = (DefaultTableModel) tabela.getModel();
         btImprimir.setEnabled(false);
         btExcluir.setEnabled(false);
     }
-    
+
     public void cdd(String cdd) {
         cidade = cdd;
         dialog.cdd(cdd);
         preencherListaMembros(cdd);
     }
-    
+
     public void fecharBotoes() {
         btImprimir.setEnabled(false);
         btExcluir.setEnabled(false);
     }
-    
+
     public void preencherListaMembros(String cd) {
         listaPessoas = daoPessoa.buscarTodos(cd);
         try {
 //          evitar duplicação ao adicionar um novo usuário
             model.setNumRows(0);
             for (Pessoa pessoa : listaPessoas) {
-                Object[] dados = {pessoa.getNome(), pessoa.getCpf(), pessoa.getCidade(), pessoa.getSituacao()};
+                Object[] dados = {pessoa.getNome(), pessoa.getCpf(), pessoa.getCidadeIgreja(), pessoa.getSituacao()};
                 model.addRow(dados);
                 tabela.setModel(model);
 //              Centralizando dados da tabela
@@ -321,7 +320,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             try {
                 model.setNumRows(0);
                 for (Pessoa p : listaPessoas) {
-                    Object[] dados = {p.getNome(), p.getCpf(), p.getCidade(), p.getSituacao()};
+                    Object[] dados = {p.getNome(), p.getCpf(), p.getCidadeIgreja(), p.getSituacao()};
                     model.addRow(dados);
                     tabela.setModel(model);
                 }
@@ -332,7 +331,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
         btExcluir.setEnabled(false);
         btImprimir.setEnabled(false);
     }//GEN-LAST:event_btConsultaActionPerformed
-    
+
 
     private void btImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btImprimirActionPerformed
         RelatorioMembros rel = new RelatorioMembros(lista, caminho);
@@ -386,6 +385,7 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
 
     @Override
     public void mouseClicked(MouseEvent e) {
+//        lista = new ArrayList<>();
         if (e.getClickCount() == 2) {
             int indice = tabela.getSelectedRow();
             pessoa = listaPessoas.get(indice);
@@ -393,58 +393,106 @@ public class JfMembros extends javax.swing.JInternalFrame implements MouseListen
             dialog.form(this);
             dialog.preencherDialog(pessoa);
         }
+//        else if (e.getClickCount() == 1) {
+//            btImprimir.setEnabled(true);
+//            btExcluir.setEnabled(true);
+//
+////            int[] indices = tabela.getSelectedRows();
+//            for (int i : tabela.getSelectedRows()) {
+////                indices[i] = tabela.convertRowIndexToModel(indices[i]);
+//                pessoa = listaPessoas.get(i);
+//                p = pessoa;
+//                System.out.println("id PEssoa: " + p.getId());
+//                System.out.println("Membro selecionado : " + p.getId() + " " + p.getNome());
+////                indices[i] = tabela.convertRowIndexToModel(indices[i]);
+////                pessoa = listaPessoas.get(i);
+////                p = pessoa;
+//                idMembro = p.getId();
+//                pessoa = new Pessoa();
+//                lista.add(idMembro);
+//
+//            }
+//            if (p.getCidadeIgreja().equals("JUSSARA - PR")) {
+//                caminho = "/relatorios/carteirinhaJussara.jasper";
+//            } else if (p.getCidadeIgreja().equals("CIANORTE - PR")) {
+//                caminho = "/relatorios/carteirinhaCianorte.jasper";
+//            } else if (p.getCidadeIgreja().equals("ATALAIA - PR")) {
+//                caminho = "/relatorios/carteirinhaAtalaia.jasper";
+//            } else if (p.getCidadeIgreja().equals("TERRA BOA - PR")) {
+//                caminho = "/relatorios/carteirinhaTerraBoa.jasper";
+//            } else if (!"PAIÇANDU - PR".equals(p.getCidadeIgreja())) {
+//                caminho = "/relatorios/carteirinhaPaicandu.jasper";
+//            } else if (p.getCidadeIgreja().equals("MUNHOZ DE MELO - PR")) {
+//                caminho = "/relatorios/carteirinhaMunhozMelo.jasper";
+//            } else {
+////                JOptionPane.showMessageDialog(null, "Nenhuma Cidade Selecionada");
+//            }
+//        }
     }
-    
+
     @Override
     public void mousePressed(MouseEvent e) {
         if (e.getClickCount() == 1) {
-            lista = new ArrayList<>();
-            int indice = tabela.getSelectedRow();
-            if (indice != -1) {
-                p = listaPessoas.get(indice);
-            }
+        lista = new ArrayList<>();
             btImprimir.setEnabled(true);
             btExcluir.setEnabled(true);
-            int[] indices = tabela.getSelectedRows();
-            for (int i = 0; i < indices.length; i++) {
-                indices[i] = tabela.convertRowIndexToModel(indices[i]);
+
+//            int[] indices = tabela.getSelectedRows();
+            for (int i : tabela.getSelectedRows()) {
+//                indices[i] = tabela.convertRowIndexToModel(indices[i]);
                 pessoa = listaPessoas.get(i);
-                idMembro = pessoa.getId();
-                lista.add(idMembro);
-                
+                p = pessoa;
+                System.out.println("id PEssoa: " + p.getId());
                 System.out.println("Membro selecionado : " + p.getId() + " " + p.getNome());
+//                indices[i] = tabela.convertRowIndexToModel(indices[i]);
+//                pessoa = listaPessoas.get(i);
+//                p = pessoa;
+                idMembro = p.getId();
+                pessoa = new Pessoa();
+                lista.add(idMembro);
+
             }
-            if (p.getCidade().equals("JUSSARA - PR")) {
+            if (p.getCidadeIgreja().equals("JUSSARA - PR")) {
                 caminho = "/relatorios/carteirinhaJussara.jasper";
-            } else if (p.getCidade().equals("CIANORTE - PR")) {
+            } else if (p.getCidadeIgreja().equals("CIANORTE - PR")) {
                 caminho = "/relatorios/carteirinhaCianorte.jasper";
-            } else if (p.getCidade().equals("ATALAIA - PR")) {
+            } else if (p.getCidadeIgreja().equals("ATALAIA - PR")) {
                 caminho = "/relatorios/carteirinhaAtalaia.jasper";
-            } else if (p.getCidade().equals("TERRA BOA - PR")) {
+            } else if (p.getCidadeIgreja().equals("TERRA BOA - PR")) {
                 caminho = "/relatorios/carteirinhaTerraBoa.jasper";
-            } else if (!"PAIÇANDU - PR".equals(p.getCidade())) {
+            } else if (!"PAIÇANDU - PR".equals(p.getCidadeIgreja())) {
                 caminho = "/relatorios/carteirinhaPaicandu.jasper";
-            } else if (p.getCidade().equals("MUNHOZ DE MELO - PR")) {
+            } else if (p.getCidadeIgreja().equals("MUNHOZ DE MELO - PR")) {
                 caminho = "/relatorios/carteirinhaMunhozMelo.jasper";
             } else {
 //                JOptionPane.showMessageDialog(null, "Nenhuma Cidade Selecionada");
             }
         }
+        }
+
+        @Override
+        public void mouseReleased
+        (MouseEvent e
+        
+        
+        ) {
     }
-    
+
     @Override
-    public void mouseReleased(MouseEvent e
-    ) {
+        public void mouseEntered
+        (MouseEvent e
+        
+        
+        ) {
     }
-    
+
     @Override
-    public void mouseEntered(MouseEvent e
-    ) {
-    }
+        public void mouseExited
+        (MouseEvent e
+        
+        
     
-    @Override
-    public void mouseExited(MouseEvent e
-    ) {
+) {
     }
-    
+
 }

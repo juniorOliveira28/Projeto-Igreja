@@ -23,16 +23,13 @@ public class Pessoa implements Serializable {
     private String nomePai;
     private String nomeMae;
     private byte[] foto;
-    private String cidade;
+    private String cidadeIgreja;
     private String dataNascimento;
     private String dataBatismo;
     private String telefone;
     private String observacao;
     private String situacao;
-//    @Temporal(javax.persistence.TemporalType.DATE)
-//    private Date dataNascimento = new Date();
-//    @Temporal(javax.persistence.TemporalType.DATE)
-//    private Date dataBatismo = new Date();
+    private String cidade;
 
     public Long getId() {
         return id;
@@ -138,6 +135,14 @@ public class Pessoa implements Serializable {
         this.situacao = situacao;
     }
 
+    public String getCidadeIgreja() {
+        return cidadeIgreja;
+    }
+
+    public void setCidadeIgreja(String cidadeIgreja) {
+        this.cidadeIgreja = cidadeIgreja;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

@@ -31,8 +31,6 @@ public class DialogMembros extends javax.swing.JDialog {
     public String caminho;
     java.awt.Frame parent;
     String cdd;
-    
-    
 
     public DialogMembros() {
         this.setIcon();
@@ -58,16 +56,18 @@ public class DialogMembros extends javax.swing.JDialog {
 
             campoId.setText(null);
             campoNome.setText("");
+            comboBoxCidade.setSelectedIndex(0);
+            campoNomePai.setText("");
+            campoNomeMae.setText("");
+            campoCpf.setText("");
+            campoRg.setText("");
             campoDtBatismo.setText("");
             campoDtNascimento.setText("");
-            campoNomeMae.setText("");
-            campoNomePai.setText("");
-            campoRg.setText("");
-            campoCpf.setText("");
-            comboBoxCidade.setSelectedIndex(0);
+            campoCidadeNascimento.setText("");
             cbSituacao.setSelectedIndex(0);
             campoTelefone.setText("");
             campoObservacao.setText("");
+
             jlImagem.setIcon(null);
             btSalvar.setEnabled(true);
             btAlterar.setEnabled(false);
@@ -77,14 +77,17 @@ public class DialogMembros extends javax.swing.JDialog {
     }
 
     public void preencherDialog(Pessoa p) {
+
         btSalvar.setEnabled(false);
         btAlterar.setEnabled(true);
 
         pessoa = p;
         campoId.setText(pessoa.getId().toString());
         idMembro = pessoa.getId();
+
         campoNome.setText(pessoa.getNome());
-        comboBoxCidade.setSelectedItem(pessoa.getCidade());
+        comboBoxCidade.setSelectedItem(pessoa.getCidadeIgreja());
+        campoCidadeNascimento.setText(pessoa.getCidade());
         campoCpf.setText(pessoa.getCpf());
         campoRg.setText(pessoa.getRg());
         campoDtBatismo.setText(pessoa.getDataBatismo());
@@ -130,7 +133,6 @@ public class DialogMembros extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         campoNome = new javax.swing.JTextField();
         campoCpf = new javax.swing.JFormattedTextField();
-        campoRg = new javax.swing.JFormattedTextField();
         campoDtNascimento = new javax.swing.JFormattedTextField();
         campoDtBatismo = new javax.swing.JFormattedTextField();
         campoNomePai = new javax.swing.JTextField();
@@ -147,6 +149,9 @@ public class DialogMembros extends javax.swing.JDialog {
         jlImagem = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btAdicionarImagem = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        campoCidadeNascimento = new javax.swing.JTextField();
+        campoRg = new javax.swing.JTextField();
         painelBotoes = new javax.swing.JPanel();
         btSalvar = new javax.swing.JButton();
         btAlterar = new javax.swing.JButton();
@@ -186,12 +191,6 @@ public class DialogMembros extends javax.swing.JDialog {
         }
 
         try {
-            campoRg.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-#")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
             campoDtNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
@@ -205,7 +204,7 @@ public class DialogMembros extends javax.swing.JDialog {
 
         jLabel6.setText("Rg:");
 
-        jLabel7.setText("Cidade:");
+        jLabel7.setText("Cidade Igreja:");
 
         jLabel8.setText("Telefone:");
 
@@ -238,132 +237,7 @@ public class DialogMembros extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout painelFormularioLayout = new javax.swing.GroupLayout(painelFormulario);
-        painelFormulario.setLayout(painelFormularioLayout);
-        painelFormularioLayout.setHorizontalGroup(
-            painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelFormularioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelFormularioLayout.createSequentialGroup()
-                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelFormularioLayout.createSequentialGroup()
-                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(campoNomeMae, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(campoNome, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabelNome, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-                                        .addComponent(campoNomePai))
-                                    .addGroup(painelFormularioLayout.createSequentialGroup()
-                                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(campoRg, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel6))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelDtNascimento)
-                                            .addComponent(campoDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelDtBatismo)
-                                            .addComponent(campoDtBatismo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(18, 18, 18)
-                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelCpf)))
-                            .addComponent(jLabel1)
-                            .addGroup(painelFormularioLayout.createSequentialGroup()
-                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(comboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8))
-                                .addGap(18, 18, 18)
-                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9))))
-                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelFormularioLayout.createSequentialGroup()
-                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(painelFormularioLayout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(painelFormularioLayout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(painelFormularioLayout.createSequentialGroup()
-                                                .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 55, Short.MAX_VALUE))))
-                                    .addGroup(painelFormularioLayout.createSequentialGroup()
-                                        .addGap(73, 73, 73)
-                                        .addComponent(jLabel3)
-                                        .addGap(0, 0, Short.MAX_VALUE)))
-                                .addContainerGap())
-                            .addGroup(painelFormularioLayout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(btAdicionarImagem)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(painelFormularioLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        painelFormularioLayout.setVerticalGroup(
-            painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelFormularioLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelNome)
-                    .addComponent(jLabelCpf)
-                    .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
-                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 12, Short.MAX_VALUE)
-                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelDtNascimento)
-                    .addComponent(jLabelDtBatismo)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoDtBatismo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoNomePai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoNomeMae, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
-            .addGroup(painelFormularioLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btAdicionarImagem)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel2.setText("Cidade Nasc.:");
 
         painelBotoes.setBackground(new java.awt.Color(243, 243, 243));
 
@@ -417,11 +291,145 @@ public class DialogMembros extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        javax.swing.GroupLayout painelFormularioLayout = new javax.swing.GroupLayout(painelFormulario);
+        painelFormulario.setLayout(painelFormularioLayout);
+        painelFormularioLayout.setHorizontalGroup(
+            painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelFormularioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelFormularioLayout.createSequentialGroup()
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelFormularioLayout.createSequentialGroup()
+                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(campoNomeMae, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoNome, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelNome, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                                    .addComponent(campoNomePai))
+                                .addGap(18, 18, 18)
+                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelCpf)))
+                            .addComponent(jLabel1)
+                            .addGroup(painelFormularioLayout.createSequentialGroup()
+                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(comboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8))
+                                .addGap(18, 18, 18)
+                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9)))
+                            .addGroup(painelFormularioLayout.createSequentialGroup()
+                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(campoRg, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelDtNascimento)
+                                    .addComponent(campoDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelDtBatismo)
+                                    .addComponent(campoDtBatismo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(campoCidadeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelFormularioLayout.createSequentialGroup()
+                                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(painelFormularioLayout.createSequentialGroup()
+                                        .addGap(9, 9, 9)
+                                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(painelFormularioLayout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(painelFormularioLayout.createSequentialGroup()
+                                                .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 26, Short.MAX_VALUE))))
+                                    .addGroup(painelFormularioLayout.createSequentialGroup()
+                                        .addGap(35, 35, 35)
+                                        .addComponent(btAdicionarImagem)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addContainerGap())
+                            .addGroup(painelFormularioLayout.createSequentialGroup()
+                                .addGap(59, 59, 59)
+                                .addComponent(jLabel3)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(painelFormularioLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(painelBotoes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        painelFormularioLayout.setVerticalGroup(
+            painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelFormularioLayout.createSequentialGroup()
+                .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelFormularioLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelNome)
+                            .addComponent(jLabelCpf)
+                            .addComponent(campoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(2, 2, 2)
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelDtNascimento)
+                            .addComponent(jLabelDtBatismo)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(campoDtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoDtBatismo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoCidadeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoNomePai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoNomeMae, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(painelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboBoxCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbSituacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painelFormularioLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlImagem, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btAdicionarImagem)))
+                .addGap(11, 11, 11)
+                .addComponent(painelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelBotoes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelFormulario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -430,9 +438,7 @@ public class DialogMembros extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelFormulario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(painelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -442,29 +448,40 @@ public class DialogMembros extends javax.swing.JDialog {
 
         if (campoNome.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            campoNome.requestFocus();
         } else if (campoCpf.getText().trim().length() < 14) {
             JOptionPane.showMessageDialog(null, "O campo Cpf é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else if (campoRg.getText().trim().length() < 12) {
-            JOptionPane.showMessageDialog(null, "O campo Rg é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else if (campoCpf.getText().trim().length() < 10) {
+            campoCpf.requestFocus();
+        } else if (campoRg.getText().trim().length() < 7) {
+            JOptionPane.showMessageDialog(null, "Rg é Inválido!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            campoRg.requestFocus();
+        } else if (campoDtNascimento.getText().trim().length() < 10) {
             JOptionPane.showMessageDialog(null, "O campo Data Nasc é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            campoDtNascimento.requestFocus();
         } else if (campoDtBatismo.getText().trim().length() < 10) {
             JOptionPane.showMessageDialog(null, "O campo Data Batismo é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            campoDtBatismo.requestFocus();
+        } else if (campoCidadeNascimento.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "O campo Cidade Nasc é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            campoCidadeNascimento.requestFocus();
         } else if (comboBoxCidade.getSelectedItem().equals("SELECIONAR")) {
-            JOptionPane.showMessageDialog(null, "O campo Cidade é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "O campo Cidade Igreja é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            comboBoxCidade.requestFocus();
         } else if (cbSituacao.getSelectedItem().equals("SELECIONAR")) {
             JOptionPane.showMessageDialog(null, "O campo Status é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            cbSituacao.requestFocus();
         } else if (jlImagem.getIcon() == null) {
             JOptionPane.showMessageDialog(null, "O campo Foto é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
                 pessoa.setNome(campoNome.getText().toUpperCase());
+                pessoa.setCidadeIgreja(comboBoxCidade.getSelectedItem().toString().toUpperCase());
                 pessoa.setCpf(campoCpf.getText());
                 pessoa.setRg(campoRg.getText());
-                pessoa.setCidade(comboBoxCidade.getSelectedItem().toString().toUpperCase());
-                pessoa.setSituacao(cbSituacao.getSelectedItem().toString().toUpperCase());
-                pessoa.setNomeMae(campoNomeMae.getText().toUpperCase());
                 pessoa.setNomePai(campoNomePai.getText().toUpperCase());
+                pessoa.setNomeMae(campoNomeMae.getText().toUpperCase());
+                pessoa.setCidade(campoCidadeNascimento.getText().toUpperCase());
+                pessoa.setSituacao(cbSituacao.getSelectedItem().toString().toUpperCase());
                 pessoa.setTelefone(campoTelefone.getText().toUpperCase());
                 pessoa.setObservacao(campoObservacao.getText().toUpperCase());
                 pessoa.setDataBatismo(campoDtBatismo.getText());
@@ -474,7 +491,7 @@ public class DialogMembros extends javax.swing.JDialog {
                     daoPessoa.salvar(pessoa);
                     JOptionPane.showMessageDialog(this, "Cadastro Realizado com sucesso!");
                     pessoa = new Pessoa();
-                   img = null;
+                    img = null;
                     jfMembros.preencherListaMembros(cdd);
                     jfMembros.fecharBotoes();
                     this.dispose();
@@ -499,37 +516,46 @@ public class DialogMembros extends javax.swing.JDialog {
 
         if (campoNome.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            campoNome.requestFocus();
         } else if (campoCpf.getText().trim().length() < 14) {
             JOptionPane.showMessageDialog(null, "O campo Cpf é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else if (campoRg.getText().trim().length() < 12) {
-            JOptionPane.showMessageDialog(null, "O campo Rg é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            campoCpf.requestFocus();
+        } else if (campoRg.getText().trim().length() < 7) {
+            JOptionPane.showMessageDialog(null, "Rg Inválido!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            campoRg.requestFocus();
         } else if (campoDtNascimento.getText().trim().length() < 10) {
             JOptionPane.showMessageDialog(null, "O campo Data Nasc é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            campoDtNascimento.requestFocus();
         } else if (campoDtBatismo.getText().trim().length() < 10) {
             JOptionPane.showMessageDialog(null, "O campo Data Batismo é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            campoDtBatismo.requestFocus();
+        } else if (campoCidadeNascimento.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "O campo Cidade Nasc é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            campoCidadeNascimento.requestFocus();
         } else if (comboBoxCidade.getSelectedItem().equals("SELECIONAR")) {
-            JOptionPane.showMessageDialog(null, "O campo Cidade é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "O campo Cidade Igreja é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
         } else if (cbSituacao.getSelectedItem().equals("SELECIONAR")) {
             JOptionPane.showMessageDialog(null, "O campo Status é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
+            cbSituacao.requestFocus();
         } else if (jlImagem.getIcon() == null) {
             JOptionPane.showMessageDialog(null, "O campo Foto é obrigatório!", "Atenção", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
                 pessoa.setNome(campoNome.getText().toUpperCase());
-                System.out.println("Setando valores");
-                pessoa.setCidade(comboBoxCidade.getSelectedItem().toString().toUpperCase());
-                pessoa.setSituacao(cbSituacao.getSelectedItem().toString().toUpperCase());
+                pessoa.setCidadeIgreja(comboBoxCidade.getSelectedItem().toString().toUpperCase());
                 pessoa.setCpf(campoCpf.getText());
+                pessoa.setRg(campoRg.getText());
+                pessoa.setNomePai(campoNomePai.getText().toUpperCase());
+                pessoa.setNomeMae(campoNomeMae.getText().toUpperCase());
                 pessoa.setDataBatismo(campoDtBatismo.getText());
                 pessoa.setDataNascimento(campoDtNascimento.getText());
-                pessoa.setNomeMae(campoNomeMae.getText().toUpperCase());
-                pessoa.setNomePai(campoNomePai.getText().toUpperCase());
-                pessoa.setRg(campoRg.getText());
+                pessoa.setSituacao(cbSituacao.getSelectedItem().toString().toUpperCase());
+                pessoa.setCidade(campoCidadeNascimento.getText().toUpperCase());
                 pessoa.setTelefone(campoTelefone.getText());
                 pessoa.setObservacao(campoObservacao.getText());
-                imgTemp =pessoa.getFoto();
-                if(img != null){
-                pessoa.setFoto(img);
+                imgTemp = pessoa.getFoto();
+                if (img != null) {
+                    pessoa.setFoto(img);
                 }
                 if (pessoa.getId() != null) {
 //                    if(imgTemp == img){
@@ -648,6 +674,7 @@ public class DialogMembros extends javax.swing.JDialog {
     private javax.swing.JButton btAlterar;
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btSalvar;
+    private javax.swing.JTextField campoCidadeNascimento;
     private javax.swing.JFormattedTextField campoCpf;
     private javax.swing.JFormattedTextField campoDtBatismo;
     private javax.swing.JFormattedTextField campoDtNascimento;
@@ -656,11 +683,12 @@ public class DialogMembros extends javax.swing.JDialog {
     private javax.swing.JTextField campoNomeMae;
     private javax.swing.JTextField campoNomePai;
     private javax.swing.JTextArea campoObservacao;
-    private javax.swing.JFormattedTextField campoRg;
+    private javax.swing.JTextField campoRg;
     private javax.swing.JFormattedTextField campoTelefone;
     private javax.swing.JComboBox<String> cbSituacao;
     private javax.swing.JComboBox<String> comboBoxCidade;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -678,7 +706,7 @@ public class DialogMembros extends javax.swing.JDialog {
     private javax.swing.JPanel painelFormulario;
     // End of variables declaration//GEN-END:variables
 
-public void setIcon() {
+    public void setIcon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/icone.png")));
     }
 }

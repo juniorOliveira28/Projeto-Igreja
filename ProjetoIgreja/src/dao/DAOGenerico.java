@@ -65,17 +65,17 @@ public class DAOGenerico<T> {
         Query query = null;
         try {
             if (cidade.equals("JUSSARA - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'JUSSARA - PR' and situacao = 'ATIVO' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidadeIgreja = 'JUSSARA - PR' and situacao = 'ATIVO' order by nome");
             } else if (cidade.equals("CIANORTE - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'CIANORTE - PR' and situacao = 'ATIVO' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidadeIgreja = 'CIANORTE - PR' and situacao = 'ATIVO' order by nome");
             } else if (cidade.equals("ATALAIA - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'ATALAIA - PR' and situacao = 'ATIVO' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidadeIgreja = 'ATALAIA - PR' and situacao = 'ATIVO' order by nome");
             } else if (cidade.equals("PAIÇANDU - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade like 'PAI%' and situacao = 'ATIVO' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidadeIgreja like 'PAI%' and situacao = 'ATIVO' order by nome");
             } else if (cidade.equals("TERRA BOA - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'TERRA BOA - PR' and situacao = 'ATIVO' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidadeIgreja = 'TERRA BOA - PR' and situacao = 'ATIVO' order by nome");
             } else if (cidade.equals("MUNHOZ DE MELO - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'MUNHOZ DE MELO - PR' and situacao = 'ATIVO' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidadeIgreja = 'MUNHOZ DE MELO - PR' and situacao = 'ATIVO' order by nome");
             }else if(cidade.equals("INATIVO")){
                 query = entityManager.createQuery("from " + classe.getSimpleName() + " where situacao = 'INATIVO' order by nome");
             }
@@ -91,17 +91,17 @@ public class DAOGenerico<T> {
         try {
 //            query = entityManager.createQuery("from Pessoa where situacao = 'ATIVO' and nome like '" + nome + "%'");
              if (cidade.equals("JUSSARA - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'JUSSARA - PR' and situacao = 'ATIVO' and nome like '" + nome + "%' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidadeIgreja = 'JUSSARA - PR' and situacao = 'ATIVO' and nome like '" + nome + "%' order by nome");
             } else if (cidade.equals("CIANORTE - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'CIANORTE - PR' and situacao = 'ATIVO' and nome like '" + nome + "%' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidadeIgreja = 'CIANORTE - PR' and situacao = 'ATIVO' and nome like '" + nome + "%' order by nome");
             } else if (cidade.equals("ATALAIA - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'ATALAIA - PR' and situacao = 'ATIVO' and nome like '" + nome + "%' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidadeIgreja = 'ATALAIA - PR' and situacao = 'ATIVO' and nome like '" + nome + "%' order by nome");
             } else if (cidade.equals("PAIÇANDU - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade like 'PAI%' and situacao = 'ATIVO' and nome like '" + nome + "%' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidadeIgreja like 'PAI%' and situacao = 'ATIVO' and nome like '" + nome + "%' order by nome");
             } else if (cidade.equals("TERRA BOA - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'TERRA BOA - PR' and situacao = 'ATIVO' and nome like '" + nome + "%' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidadeIgreja = 'TERRA BOA - PR' and situacao = 'ATIVO' and nome like '" + nome + "%' order by nome");
             } else if (cidade.equals("MUNHOZ DE MELO - PR")) {
-                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidade = 'MUNHOZ DE MELO - PR' and situacao = 'ATIVO' and nome like '" + nome + "%' order by nome");
+                query = entityManager.createQuery("from " + classe.getSimpleName() + " where cidadeIgreja = 'MUNHOZ DE MELO - PR' and situacao = 'ATIVO' and nome like '" + nome + "%' order by nome");
             }else if(cidade.equals("INATIVO")){
                 query = entityManager.createQuery("from " + classe.getSimpleName() + " where situacao = 'INATIVO' and nome like '" + nome + "%' order by nome");
             }
